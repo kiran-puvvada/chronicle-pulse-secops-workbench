@@ -1,0 +1,40 @@
+rule volt_typhoon_kv_botnet_edge_router_zero_day__ti2026 {
+  meta:
+    author = "Google SecOps Detection Engineering"
+    description = "Detects execution artifacts and C2 communication associated with Volt Typhoon KV-Botnet Edge Router Zero-Day & Living-off-the-Land Campaign (CVE-2026-21409)"
+    severity = "CRITICAL"
+    priority = "HIGH"
+    mitre_attack = "T1190, T1047, T1003.003, T1090.001, T1078.002"
+    cve_references = "CVE-2026-21409, CVE-2025-39112"
+    threat_actor = "Volt Typhoon"
+    malware_family = "KV-Botnet"
+
+  events:
+    $proc.metadata.event_type in ("PROCESS_LAUNCH", "FILE_CREATION", "REGISTRY_MODIFICATION")
+    $proc.principal.hostname = $hostname
+    (
+      $proc.target.file.sha256 in ("8f4b2e91c7d3a054e16b9847c12d390fa88b123490ce71ab56d0219e84c710aa") nocase or
+      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase
+    )
+
+    $net.metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP")
+    $net.principal.hostname = $hostname
+    (
+      $net.target.ip in ("172.104.91.214", "45.77.182.19") or
+      $net.network.dns.questions.name in ("wan-firmware-check-global.net") nocase
+    )
+
+  match:
+    $hostname over 15m
+
+  outcome:
+    $risk_score = max(95)
+    $mitre_techniques = array_distinct("T1190, T1047, T1003.003, T1090.001, T1078.002")
+    $affected_host = array_distinct($hostname)
+    $principal_user = array_distinct($proc.principal.user.userid)
+    $command_lines = array_distinct($proc.target.process.command_line)
+    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))
+
+  condition:
+    $proc and $net
+}

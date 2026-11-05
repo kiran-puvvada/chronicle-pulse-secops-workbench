@@ -1,0 +1,30 @@
+// ============================================================================
+// Google SecOps (Chronicle) UDM Hunting Queries
+// Advisory: LockBit 4.0 & RansomHub Dual-Extortion Wave Targeting BFSI & Healthcare VMware ESXi Hypervisors
+// Severity: Critical | Actor: RansomHub & LockBit Affiliates | Malware: LockBit
+// CVE References: CVE-2026-1088, CVE-2025-22457
+// ============================================================================
+
+// --- 1. UDM Multi-Surface IoC Sweep Query ---
+// Google SecOps UDM Multi-Surface IoC Sweep: LockBit 4.0 & RansomHub Dual-Extortion Wave Targeting BFSI & Healthcare VMware ESXi Hypervisors
+metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP", "PROCESS_LAUNCH", "FILE_CREATION")
+(
+  target.ip in ("193.149.176.88", "185.215.113.42") or
+  principal.ip in ("193.149.176.88", "185.215.113.42") or
+  network.dns.questions.name in ("cdn-veeam-telemetry-sync.com") or
+  target.hostname in ("cdn-veeam-telemetry-sync.com") or
+  target.file.sha256 in ("3c90e1f8452a6b77d09142c8a3b55f190e842c11ab99402d67e12904fa18c321", "9a11b208f4c5d7821e330a94bc81209fa771230c8421b90e5541a23f0981d44e") or
+  principal.process.file.sha256 in ("3c90e1f8452a6b77d09142c8a3b55f190e842c11ab99402d67e12904fa18c321", "9a11b208f4c5d7821e330a94bc81209fa771230c8421b90e5541a23f0981d44e") or
+  target.file.md5 in ("7f8102c94a11b802e34910cd8821fa04") or
+  target.url in ("https://cdn-veeam-telemetry-sync.com/static/esxi_crypt.bin")
+)
+
+// --- 2. UDM Behavioral / Execution Pattern Hunt Query ---
+// Google SecOps UDM Behavioral Hunt: LockBit
+metadata.event_type in ("PROCESS_LAUNCH", "REGISTRY_MODIFICATION", "FILE_CREATION", "SCHEDULED_TASK_CREATION")
+(
+  principal.process.file.full_path = /.*(poortry\.sys).*/ nocase or
+  target.process.file.full_path = /.*(poortry\.sys).*/ nocase or
+  target.process.command_line = /.*vssadmin\.exe.*/ nocase
+)
+principal.user.userid != "SYSTEM"

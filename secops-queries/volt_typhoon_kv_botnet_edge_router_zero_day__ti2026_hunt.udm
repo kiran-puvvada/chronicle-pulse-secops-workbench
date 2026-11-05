@@ -1,0 +1,31 @@
+// ============================================================================
+// Google SecOps (Chronicle) UDM Hunting Queries
+// Advisory: Volt Typhoon KV-Botnet Edge Router Zero-Day & Living-off-the-Land Campaign (CVE-2026-21409)
+// Severity: Critical | Actor: Volt Typhoon | Malware: KV-Botnet
+// CVE References: CVE-2026-21409, CVE-2025-39112
+// ============================================================================
+
+// --- 1. UDM Multi-Surface IoC Sweep Query ---
+// Google SecOps UDM Multi-Surface IoC Sweep: Volt Typhoon KV-Botnet Edge Router Zero-Day & Living-off-the-Land Campaign (CVE-2026-21409)
+metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP", "PROCESS_LAUNCH", "FILE_CREATION")
+(
+  target.ip in ("172.104.91.214", "45.77.182.19") or
+  principal.ip in ("172.104.91.214", "45.77.182.19") or
+  network.dns.questions.name in ("wan-firmware-check-global.net") or
+  target.hostname in ("wan-firmware-check-global.net") or
+  target.file.sha256 in ("8f4b2e91c7d3a054e16b9847c12d390fa88b123490ce71ab56d0219e84c710aa") or
+  principal.process.file.sha256 in ("8f4b2e91c7d3a054e16b9847c12d390fa88b123490ce71ab56d0219e84c710aa") or
+  target.file.md5 in ("d91b448201fc8923ab0192fe7712ca90") or
+  target.url in ("https://wan-firmware-check-global.net/v2/cfg/mips64.bin")
+)
+
+// --- 2. UDM Behavioral / Execution Pattern Hunt Query ---
+// Google SecOps UDM Behavioral Hunt: KV-Botnet
+metadata.event_type in ("PROCESS_LAUNCH", "REGISTRY_MODIFICATION", "FILE_CREATION", "SCHEDULED_TASK_CREATION")
+(
+  principal.process.file.full_path = /.*(ntds\.dit).*/ nocase or
+  target.process.file.full_path = /.*(ntds\.dit).*/ nocase or
+  target.process.command_line = /.*ntdsutil.*/ nocase or
+  target.registry.registry_key = /.*tcp.*/ nocase
+)
+principal.user.userid != "SYSTEM"

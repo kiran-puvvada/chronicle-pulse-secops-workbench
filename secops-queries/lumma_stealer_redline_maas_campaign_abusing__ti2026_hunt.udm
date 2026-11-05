@@ -1,0 +1,31 @@
+// ============================================================================
+// Google SecOps (Chronicle) UDM Hunting Queries
+// Advisory: Lumma Stealer & RedLine MaaS Campaign Abusing Fake CAPTCHA & ClickFix PowerShell Lures
+// Severity: High | Actor: Storm-1607 MaaS Affiliates | Malware: Lumma Stealer
+// CVE References: CVE-2025-21333
+// ============================================================================
+
+// --- 1. UDM Multi-Surface IoC Sweep Query ---
+// Google SecOps UDM Multi-Surface IoC Sweep: Lumma Stealer & RedLine MaaS Campaign Abusing Fake CAPTCHA & ClickFix PowerShell Lures
+metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP", "PROCESS_LAUNCH", "FILE_CREATION")
+(
+  target.ip in ("104.21.64.119") or
+  principal.ip in ("104.21.64.119") or
+  network.dns.questions.name in ("verify-human-cloudflare-check.cc", "lumma-gate-panel99.su") or
+  target.hostname in ("verify-human-cloudflare-check.cc", "lumma-gate-panel99.su") or
+  target.file.sha256 in ("5e81a4092c11f8730b4291d8c6a002e91f8823c401a9283bd71e6509a23c4410") or
+  principal.process.file.sha256 in ("5e81a4092c11f8730b4291d8c6a002e91f8823c401a9283bd71e6509a23c4410") or
+  target.file.md5 in ("a0912e4481bc72910d4451ef9012ab33") or
+  target.url in ("https://verify-human-cloudflare-check.cc/captcha.hta")
+)
+
+// --- 2. UDM Behavioral / Execution Pattern Hunt Query ---
+// Google SecOps UDM Behavioral Hunt: Lumma Stealer
+metadata.event_type in ("PROCESS_LAUNCH", "REGISTRY_MODIFICATION", "FILE_CREATION", "SCHEDULED_TASK_CREATION")
+(
+  principal.process.file.full_path = /.*(RegAsm\.exe).*/ nocase or
+  target.process.file.full_path = /.*(RegAsm\.exe).*/ nocase or
+  target.process.command_line = /.*mshta\.exe.*/ nocase or
+  target.registry.registry_key = /.*RunMRU.*/ nocase
+)
+principal.user.userid != "SYSTEM"

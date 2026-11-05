@@ -1,0 +1,40 @@
+rule asyncrat_vidar_loader_campaign_abusing_signe_ti2024 {
+  meta:
+    author = "Google SecOps Detection Engineering"
+    description = "Detects execution artifacts and C2 communication associated with AsyncRAT & Vidar Loader Campaign Abusing Signed Cloud Tunnel Binaries in Healthcare & Retail"
+    severity = "MEDIUM"
+    priority = "MEDIUM"
+    mitre_attack = "T1027.006, T1059.007, T1548.002"
+    cve_references = "CVE-2024-38021"
+    threat_actor = "TA577 / AsyncRAT Operators"
+    malware_family = "AsyncRAT"
+
+  events:
+    $proc.metadata.event_type in ("PROCESS_LAUNCH", "FILE_CREATION", "REGISTRY_MODIFICATION")
+    $proc.principal.hostname = $hostname
+    (
+      $proc.target.file.sha256 in ("4a8812c90e3412b780d912f45c612a90e8412b309c7712e4509a12d84f9011cc") nocase or
+      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase
+    )
+
+    $net.metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP")
+    $net.principal.hostname = $hostname
+    (
+      $net.target.ip in ("94.156.71.108") or
+      $net.network.dns.questions.name in ("async-rat-node04.ddns.net") nocase
+    )
+
+  match:
+    $hostname over 15m
+
+  outcome:
+    $risk_score = max(60)
+    $mitre_techniques = array_distinct("T1027.006, T1059.007, T1548.002")
+    $affected_host = array_distinct($hostname)
+    $principal_user = array_distinct($proc.principal.user.userid)
+    $command_lines = array_distinct($proc.target.process.command_line)
+    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))
+
+  condition:
+    $proc and $net
+}

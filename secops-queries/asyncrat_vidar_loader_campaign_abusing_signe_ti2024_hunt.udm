@@ -1,0 +1,28 @@
+// ============================================================================
+// Google SecOps (Chronicle) UDM Hunting Queries
+// Advisory: AsyncRAT & Vidar Loader Campaign Abusing Signed Cloud Tunnel Binaries in Healthcare & Retail
+// Severity: Medium | Actor: TA577 / AsyncRAT Operators | Malware: AsyncRAT
+// CVE References: CVE-2024-38021
+// ============================================================================
+
+// --- 1. UDM Multi-Surface IoC Sweep Query ---
+// Google SecOps UDM Multi-Surface IoC Sweep: AsyncRAT & Vidar Loader Campaign Abusing Signed Cloud Tunnel Binaries in Healthcare & Retail
+metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP", "PROCESS_LAUNCH", "FILE_CREATION")
+(
+  target.ip in ("94.156.71.108") or
+  principal.ip in ("94.156.71.108") or
+  network.dns.questions.name in ("async-rat-node04.ddns.net") or
+  target.hostname in ("async-rat-node04.ddns.net") or
+  target.file.sha256 in ("4a8812c90e3412b780d912f45c612a90e8412b309c7712e4509a12d84f9011cc") or
+  principal.process.file.sha256 in ("4a8812c90e3412b780d912f45c612a90e8412b309c7712e4509a12d84f9011cc") or
+  target.file.md5 in ("6b1209f44a712c90e3412b88a0912d19")
+)
+
+// --- 2. UDM Behavioral / Execution Pattern Hunt Query ---
+// Google SecOps UDM Behavioral Hunt: AsyncRAT
+metadata.event_type in ("PROCESS_LAUNCH", "REGISTRY_MODIFICATION", "FILE_CREATION", "SCHEDULED_TASK_CREATION")
+(
+  target.process.command_line = /.*wscript\.exe.*/ nocase or
+  target.registry.registry_key = /.*command.*/ nocase
+)
+principal.user.userid != "SYSTEM"

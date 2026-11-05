@@ -1,0 +1,40 @@
+rule akira_blackcat_linux_windows_ransomware_camp_ti2026 {
+  meta:
+    author = "Google SecOps Detection Engineering"
+    description = "Detects execution artifacts and C2 communication associated with Akira & BlackCat Linux/Windows Ransomware Campaign Targeting Manufacturing & Retail OT Gateways"
+    severity = "HIGH"
+    priority = "MEDIUM"
+    mitre_attack = "T1133, T1572, T1649, T1562.009, T1486"
+    cve_references = "CVE-2024-20353, CVE-2025-11904"
+    threat_actor = "Akira Syndicate"
+    malware_family = "Akira"
+
+  events:
+    $proc.metadata.event_type in ("PROCESS_LAUNCH", "FILE_CREATION", "REGISTRY_MODIFICATION")
+    $proc.principal.hostname = $hostname
+    (
+      $proc.target.file.sha256 in ("6c44a109e821b7304d9120f8a4c551290e8412a309bc7712e4509a12d84f9011") nocase or
+      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase
+    )
+
+    $net.metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP")
+    $net.principal.hostname = $hostname
+    (
+      $net.target.ip in ("185.172.128.95") or
+      $net.network.dns.questions.name in ("akira-leak-negotiation-portal.onion.ly") nocase
+    )
+
+  match:
+    $hostname over 15m
+
+  outcome:
+    $risk_score = max(80)
+    $mitre_techniques = array_distinct("T1133, T1572, T1649, T1562.009, T1486")
+    $affected_host = array_distinct($hostname)
+    $principal_user = array_distinct($proc.principal.user.userid)
+    $command_lines = array_distinct($proc.target.process.command_line)
+    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))
+
+  condition:
+    $proc and $net
+}

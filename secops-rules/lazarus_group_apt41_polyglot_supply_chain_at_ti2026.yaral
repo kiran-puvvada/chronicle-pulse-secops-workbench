@@ -1,0 +1,40 @@
+rule lazarus_group_apt41_polyglot_supply_chain_at_ti2026 {
+  meta:
+    author = "Google SecOps Detection Engineering"
+    description = "Detects execution artifacts and C2 communication associated with Lazarus Group & APT41 Polyglot Supply Chain Attack on PyPI / NPM CI/CD Pipelines"
+    severity = "CRITICAL"
+    priority = "HIGH"
+    mitre_attack = "T1195.001, T1059.006, T1552.001, T1027"
+    cve_references = "CVE-2026-0419"
+    threat_actor = "Lazarus"
+    malware_family = "InvisibleFerret"
+
+  events:
+    $proc.metadata.event_type in ("PROCESS_LAUNCH", "FILE_CREATION", "REGISTRY_MODIFICATION")
+    $proc.principal.hostname = $hostname
+    (
+      $proc.target.file.sha256 in ("7b12c904fa8812e309d451c78a2310f98e1204bc7761a2390ef1284c9012a44b", "4e0912a88c34b7120f9812d34c56a0192b8412f90e3312a78c9012b45e11a802") nocase or
+      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase
+    )
+
+    $net.metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP")
+    $net.principal.hostname = $hostname
+    (
+      $net.target.ip in ("147.124.214.131", "45.61.169.210") or
+      $net.network.dns.questions.name in ("registry-npm-mirror-telemetry.io") nocase
+    )
+
+  match:
+    $hostname over 15m
+
+  outcome:
+    $risk_score = max(95)
+    $mitre_techniques = array_distinct("T1195.001, T1059.006, T1552.001, T1027")
+    $affected_host = array_distinct($hostname)
+    $principal_user = array_distinct($proc.principal.user.userid)
+    $command_lines = array_distinct($proc.target.process.command_line)
+    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))
+
+  condition:
+    $proc and $net
+}

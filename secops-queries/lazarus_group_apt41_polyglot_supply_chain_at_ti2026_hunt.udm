@@ -1,0 +1,30 @@
+// ============================================================================
+// Google SecOps (Chronicle) UDM Hunting Queries
+// Advisory: Lazarus Group & APT41 Polyglot Supply Chain Attack on PyPI / NPM CI/CD Pipelines
+// Severity: Critical | Actor: Lazarus | Malware: InvisibleFerret
+// CVE References: CVE-2026-0419
+// ============================================================================
+
+// --- 1. UDM Multi-Surface IoC Sweep Query ---
+// Google SecOps UDM Multi-Surface IoC Sweep: Lazarus Group & APT41 Polyglot Supply Chain Attack on PyPI / NPM CI/CD Pipelines
+metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP", "PROCESS_LAUNCH", "FILE_CREATION")
+(
+  target.ip in ("147.124.214.131", "45.61.169.210") or
+  principal.ip in ("147.124.214.131", "45.61.169.210") or
+  network.dns.questions.name in ("registry-npm-mirror-telemetry.io") or
+  target.hostname in ("registry-npm-mirror-telemetry.io") or
+  target.file.sha256 in ("7b12c904fa8812e309d451c78a2310f98e1204bc7761a2390ef1284c9012a44b", "4e0912a88c34b7120f9812d34c56a0192b8412f90e3312a78c9012b45e11a802") or
+  principal.process.file.sha256 in ("7b12c904fa8812e309d451c78a2310f98e1204bc7761a2390ef1284c9012a44b", "4e0912a88c34b7120f9812d34c56a0192b8412f90e3312a78c9012b45e11a802") or
+  target.file.md5 in ("c1902a8471bf9023e1124c890a7712d4") or
+  target.url in ("http://147.124.214.131:1224/client/99")
+)
+
+// --- 2. UDM Behavioral / Execution Pattern Hunt Query ---
+// Google SecOps UDM Behavioral Hunt: InvisibleFerret
+metadata.event_type in ("PROCESS_LAUNCH", "REGISTRY_MODIFICATION", "FILE_CREATION", "SCHEDULED_TASK_CREATION")
+(
+  principal.process.file.full_path = /.*(main\.py|python\.exe).*/ nocase or
+  target.process.file.full_path = /.*(main\.py|python\.exe).*/ nocase or
+  target.process.command_line = /.*python3.*/ nocase
+)
+principal.user.userid != "SYSTEM"

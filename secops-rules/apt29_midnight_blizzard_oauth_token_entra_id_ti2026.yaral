@@ -1,0 +1,40 @@
+rule apt29_midnight_blizzard_oauth_token_entra_id_ti2026 {
+  meta:
+    author = "Google SecOps Detection Engineering"
+    description = "Detects execution artifacts and C2 communication associated with APT29 (Midnight Blizzard) OAuth Token & Entra ID Cross-Tenant Cloud Identity Intrusion"
+    severity = "CRITICAL"
+    priority = "HIGH"
+    mitre_attack = "T1110.003, T1098.001, T1098.003, T1550.001, T1114.002"
+    cve_references = "CVE-2025-49011"
+    threat_actor = "APT29"
+    malware_family = "GraphAPI-Backdoor"
+
+  events:
+    $proc.metadata.event_type in ("PROCESS_LAUNCH", "FILE_CREATION", "REGISTRY_MODIFICATION")
+    $proc.principal.hostname = $hostname
+    (
+      $proc.target.file.sha256 in ("1d77c8902a44e612b09384f712c90a8834b1209fe7612a409cb812390ef41a20") nocase or
+      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase
+    )
+
+    $net.metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP")
+    $net.principal.hostname = $hostname
+    (
+      $net.target.ip in ("194.36.191.74", "91.199.84.112") or
+      $net.network.dns.questions.name in ("login-msft-sso-federation.org") nocase
+    )
+
+  match:
+    $hostname over 15m
+
+  outcome:
+    $risk_score = max(95)
+    $mitre_techniques = array_distinct("T1110.003, T1098.001, T1098.003, T1550.001, T1114.002")
+    $affected_host = array_distinct($hostname)
+    $principal_user = array_distinct($proc.principal.user.userid)
+    $command_lines = array_distinct($proc.target.process.command_line)
+    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))
+
+  condition:
+    $proc and $net
+}

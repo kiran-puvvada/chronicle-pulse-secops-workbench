@@ -1,0 +1,40 @@
+rule acidpour_industroyer_variant_ot_wiper_campai_ti2025 {
+  meta:
+    author = "Google SecOps Detection Engineering"
+    description = "Detects execution artifacts and C2 communication associated with AcidPour & Industroyer-Variant OT Wiper Campaign Against Energy & Telecom Substations"
+    severity = "CRITICAL"
+    priority = "HIGH"
+    mitre_attack = "T1068, T1070.002, T1561.002, T1495"
+    cve_references = "CVE-2025-0918"
+    threat_actor = "Sandworm / APT44"
+    malware_family = "AcidPour Wiper"
+
+  events:
+    $proc.metadata.event_type in ("PROCESS_LAUNCH", "FILE_CREATION", "REGISTRY_MODIFICATION")
+    $proc.principal.hostname = $hostname
+    (
+      $proc.target.file.sha256 in ("2f9018c44a12b7830e9124d6c8012a45f9123b88c4012e77a9012b34d812f09a") nocase or
+      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase
+    )
+
+    $net.metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP")
+    $net.principal.hostname = $hostname
+    (
+      $net.target.ip in ("185.244.212.61") or
+      $net.network.dns.questions.name in ("update-mikrotik-routeros-mirror.net") nocase
+    )
+
+  match:
+    $hostname over 15m
+
+  outcome:
+    $risk_score = max(95)
+    $mitre_techniques = array_distinct("T1068, T1070.002, T1561.002, T1495")
+    $affected_host = array_distinct($hostname)
+    $principal_user = array_distinct($proc.principal.user.userid)
+    $command_lines = array_distinct($proc.target.process.command_line)
+    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))
+
+  condition:
+    $proc and $net
+}

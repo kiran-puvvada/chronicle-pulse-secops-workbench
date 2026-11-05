@@ -1,0 +1,40 @@
+rule lumma_stealer_redline_maas_campaign_abusing__ti2026 {
+  meta:
+    author = "Google SecOps Detection Engineering"
+    description = "Detects execution artifacts and C2 communication associated with Lumma Stealer & RedLine MaaS Campaign Abusing Fake CAPTCHA & ClickFix PowerShell Lures"
+    severity = "HIGH"
+    priority = "MEDIUM"
+    mitre_attack = "T1204.002, T1218.005, T1055.012, T1539"
+    cve_references = "CVE-2025-21333"
+    threat_actor = "Storm-1607 MaaS Affiliates"
+    malware_family = "Lumma Stealer"
+
+  events:
+    $proc.metadata.event_type in ("PROCESS_LAUNCH", "FILE_CREATION", "REGISTRY_MODIFICATION")
+    $proc.principal.hostname = $hostname
+    (
+      $proc.target.file.sha256 in ("5e81a4092c11f8730b4291d8c6a002e91f8823c401a9283bd71e6509a23c4410") nocase or
+      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase
+    )
+
+    $net.metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP")
+    $net.principal.hostname = $hostname
+    (
+      $net.target.ip in ("104.21.64.119") or
+      $net.network.dns.questions.name in ("verify-human-cloudflare-check.cc", "lumma-gate-panel99.su") nocase
+    )
+
+  match:
+    $hostname over 15m
+
+  outcome:
+    $risk_score = max(80)
+    $mitre_techniques = array_distinct("T1204.002, T1218.005, T1055.012, T1539")
+    $affected_host = array_distinct($hostname)
+    $principal_user = array_distinct($proc.principal.user.userid)
+    $command_lines = array_distinct($proc.target.process.command_line)
+    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))
+
+  condition:
+    $proc and $net
+}

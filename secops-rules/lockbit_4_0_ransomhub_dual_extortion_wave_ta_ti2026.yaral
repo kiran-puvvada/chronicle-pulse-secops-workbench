@@ -1,0 +1,40 @@
+rule lockbit_4_0_ransomhub_dual_extortion_wave_ta_ti2026 {
+  meta:
+    author = "Google SecOps Detection Engineering"
+    description = "Detects execution artifacts and C2 communication associated with LockBit 4.0 & RansomHub Dual-Extortion Wave Targeting BFSI & Healthcare VMware ESXi Hypervisors"
+    severity = "CRITICAL"
+    priority = "HIGH"
+    mitre_attack = "T1190, T1562.001, T1219, T1567.002, T1486"
+    cve_references = "CVE-2026-1088, CVE-2025-22457"
+    threat_actor = "RansomHub & LockBit Affiliates"
+    malware_family = "LockBit"
+
+  events:
+    $proc.metadata.event_type in ("PROCESS_LAUNCH", "FILE_CREATION", "REGISTRY_MODIFICATION")
+    $proc.principal.hostname = $hostname
+    (
+      $proc.target.file.sha256 in ("3c90e1f8452a6b77d09142c8a3b55f190e842c11ab99402d67e12904fa18c321", "9a11b208f4c5d7821e330a94bc81209fa771230c8421b90e5541a23f0981d44e") nocase or
+      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase
+    )
+
+    $net.metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP")
+    $net.principal.hostname = $hostname
+    (
+      $net.target.ip in ("193.149.176.88", "185.215.113.42") or
+      $net.network.dns.questions.name in ("cdn-veeam-telemetry-sync.com") nocase
+    )
+
+  match:
+    $hostname over 15m
+
+  outcome:
+    $risk_score = max(95)
+    $mitre_techniques = array_distinct("T1190, T1562.001, T1219, T1567.002, T1486")
+    $affected_host = array_distinct($hostname)
+    $principal_user = array_distinct($proc.principal.user.userid)
+    $command_lines = array_distinct($proc.target.process.command_line)
+    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))
+
+  condition:
+    $proc and $net
+}

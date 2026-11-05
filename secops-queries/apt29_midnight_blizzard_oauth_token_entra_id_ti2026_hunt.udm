@@ -1,0 +1,30 @@
+// ============================================================================
+// Google SecOps (Chronicle) UDM Hunting Queries
+// Advisory: APT29 (Midnight Blizzard) OAuth Token & Entra ID Cross-Tenant Cloud Identity Intrusion
+// Severity: Critical | Actor: APT29 | Malware: GraphAPI-Backdoor
+// CVE References: CVE-2025-49011
+// ============================================================================
+
+// --- 1. UDM Multi-Surface IoC Sweep Query ---
+// Google SecOps UDM Multi-Surface IoC Sweep: APT29 (Midnight Blizzard) OAuth Token & Entra ID Cross-Tenant Cloud Identity Intrusion
+metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP", "PROCESS_LAUNCH", "FILE_CREATION")
+(
+  target.ip in ("194.36.191.74", "91.199.84.112") or
+  principal.ip in ("194.36.191.74", "91.199.84.112") or
+  network.dns.questions.name in ("login-msft-sso-federation.org") or
+  target.hostname in ("login-msft-sso-federation.org") or
+  target.file.sha256 in ("1d77c8902a44e612b09384f712c90a8834b1209fe7612a409cb812390ef41a20") or
+  principal.process.file.sha256 in ("1d77c8902a44e612b09384f712c90a8834b1209fe7612a409cb812390ef41a20") or
+  target.file.md5 in ("e44190c82a117b9034f812c09a4412b8") or
+  target.url in ("https://login-msft-sso-federation.org/oauth2/v2.0/authorize")
+)
+
+// --- 2. UDM Behavioral / Execution Pattern Hunt Query ---
+// Google SecOps UDM Behavioral Hunt: GraphAPI-Backdoor
+metadata.event_type in ("PROCESS_LAUNCH", "REGISTRY_MODIFICATION", "FILE_CREATION", "SCHEDULED_TASK_CREATION")
+(
+  principal.process.file.full_path = /.*(\.msal_token_cache_apt29\.json).*/ nocase or
+  target.process.file.full_path = /.*(\.msal_token_cache_apt29\.json).*/ nocase or
+  target.process.command_line = /.*credential.*/ nocase
+)
+principal.user.userid != "SYSTEM"

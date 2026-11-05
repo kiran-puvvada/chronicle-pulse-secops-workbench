@@ -1,0 +1,30 @@
+// ============================================================================
+// Google SecOps (Chronicle) UDM Hunting Queries
+// Advisory: Akira & BlackCat Linux/Windows Ransomware Campaign Targeting Manufacturing & Retail OT Gateways
+// Severity: High | Actor: Akira Syndicate | Malware: Akira
+// CVE References: CVE-2024-20353, CVE-2025-11904
+// ============================================================================
+
+// --- 1. UDM Multi-Surface IoC Sweep Query ---
+// Google SecOps UDM Multi-Surface IoC Sweep: Akira & BlackCat Linux/Windows Ransomware Campaign Targeting Manufacturing & Retail OT Gateways
+metadata.event_type in ("NETWORK_CONNECTION", "NETWORK_DNS", "NETWORK_HTTP", "PROCESS_LAUNCH", "FILE_CREATION")
+(
+  target.ip in ("185.172.128.95") or
+  principal.ip in ("185.172.128.95") or
+  network.dns.questions.name in ("akira-leak-negotiation-portal.onion.ly") or
+  target.hostname in ("akira-leak-negotiation-portal.onion.ly") or
+  target.file.sha256 in ("6c44a109e821b7304d9120f8a4c551290e8412a309bc7712e4509a12d84f9011") or
+  principal.process.file.sha256 in ("6c44a109e821b7304d9120f8a4c551290e8412a309bc7712e4509a12d84f9011") or
+  target.file.md5 in ("3e9012a44b812c709d1124f89a0123e5") or
+  target.url in ("https://akira-leak-negotiation-portal.onion.ly/chat/id-99412")
+)
+
+// --- 2. UDM Behavioral / Execution Pattern Hunt Query ---
+// Google SecOps UDM Behavioral Hunt: Akira
+metadata.event_type in ("PROCESS_LAUNCH", "REGISTRY_MODIFICATION", "FILE_CREATION", "SCHEDULED_TASK_CREATION")
+(
+  principal.process.file.full_path = /.*(akira_readme\.txt).*/ nocase or
+  target.process.file.full_path = /.*(akira_readme\.txt).*/ nocase or
+  target.process.command_line = /.*-Command.*/ nocase
+)
+principal.user.userid != "SYSTEM"

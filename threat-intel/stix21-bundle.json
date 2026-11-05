@@ -1,0 +1,1734 @@
+{
+  "type": "bundle",
+  "id": "bundle--e2c48dc8-secops-intel-bundle",
+  "spec_version": "2.1",
+  "created": "2026-11-05T17:50:20.133Z",
+  "objects": [
+    {
+      "type": "threat-actor",
+      "spec_version": "2.1",
+      "id": "threat-actor--934d296cd127-0001-4000-8000-000000000001",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Volt Typhoon",
+      "description": "Threat actor associated with Volt Typhoon KV-Botnet Edge Router Zero-Day & Living-off-the-Land Campaign (CVE-2026-21409)",
+      "threat_actor_types": [
+        "apt groups"
+      ]
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--934d296cd127-0002-4000-8000-000000000002",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "KV-Botnet",
+      "malware_types": [
+        "botnets"
+      ],
+      "is_family": true
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--934d296cd127-1000-4000-8000-008e540a8d10",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "SHA-256 File Hash: kv_mips_stage2.elf",
+      "pattern": "[file:hashes.'SHA-256' = '8f4b2e91c7d3a054e16b9847c12d390fa88b123490ce71ab56d0219e84c710aa']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T16:58:57.411Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--934d296cd127-1001-4000-8000-4f0d503edbae",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "SHA-1 File Hash: wan_diag_helper.sh",
+      "pattern": "[file:hashes.'SHA-1' = '4a91c082f7e12d33b98104c5e77f2109ab34d891']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T16:58:57.411Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--934d296cd127-1002-4000-8000-1469e712f8ed",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "MD5 File Hash: pro_ntds_dump.cab",
+      "pattern": "[file:hashes.'MD5' = 'd91b448201fc8923ab0192fe7712ca90']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T16:58:57.411Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--934d296cd127-2000-4000-8000-860e3c6a142d",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "IPv4: 172.104.91.214",
+      "description": "KV-Botnet Tier-1 Relay Node",
+      "pattern": "[ipv4-addr:value = '172.104.91.214']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T16:58:57.411Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--934d296cd127-2001-4000-8000-fff2aec2487e",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "IPv4: 45.77.182.19",
+      "description": "Volt Typhoon Operational Management Server",
+      "pattern": "[ipv4-addr:value = '45.77.182.19']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T16:58:57.411Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--934d296cd127-2002-4000-8000-213a99c8a1a8",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Domain: wan-firmware-check-global.net",
+      "description": "Router Implant Check-in Domain",
+      "pattern": "[domain-name:value = 'wan-firmware-check-global.net']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T16:58:57.411Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--934d296cd127-2003-4000-8000-4fc93380f790",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "URL: https://wan-firmware-check-global.net/v2/cfg/mips64.bin",
+      "description": "Stage-2 Router Memory Implant URI",
+      "pattern": "[url:value = 'https://wan-firmware-check-global.net/v2/cfg/mips64.bin']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T16:58:57.411Z"
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--934d296cd127-3000-4000-8000-74009a9aef1a",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1190 - Exploit Public-Facing Application",
+      "description": "Exploits CVE-2026-21409 on internet-facing SD-WAN appliances.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1190",
+          "url": "https://attack.mitre.org/techniques/T1190/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--934d296cd127-3001-4000-8000-aabcb808a7fc",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1047 - Windows Management Instrumentation",
+      "description": "Uses WMI for remote command execution and AD discovery.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1047",
+          "url": "https://attack.mitre.org/techniques/T1047/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--934d296cd127-3002-4000-8000-3b7d4218fc12",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1003.003 - OS Credential Dumping: NTDS",
+      "description": "Extracts ntds.dit via ntdsutil IFM media creation.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1003.003",
+          "url": "https://attack.mitre.org/techniques/T1003/003/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--934d296cd127-3003-4000-8000-52061eb05389",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1090.001 - Proxy: Internal Proxy",
+      "description": "Chains netsh portproxy rules across internal Windows servers.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1090.001",
+          "url": "https://attack.mitre.org/techniques/T1090/001/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--934d296cd127-3004-4000-8000-34dbc00ee480",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1078.002 - Valid Accounts: Domain Accounts",
+      "description": "Operates almost exclusively through compromised legitimate credentials.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1078.002",
+          "url": "https://attack.mitre.org/techniques/T1078/002/"
+        }
+      ]
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--934d296cd127-9999-4000-8000-000000009999",
+      "created": "2026-11-05T16:58:57.411Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Volt Typhoon KV-Botnet Edge Router Zero-Day & Living-off-the-Land Campaign (CVE-2026-21409)",
+      "description": "Volt Typhoon (Bronze Silhouette) is actively exploiting CVE-2026-21409, a critical pre-authentication command injection flaw in enterprise SD-WAN and SOHO edge appliances. Upon gaining access, operators avoid dropping custom malware to disk on internal hosts—instead chaining native Windows administrative utilities (ntdsutil, netsh, wmic, and PowerShell) to harvest Active Directory credentials, configure covert port-forwarding proxies, and maintain multi-month persistence inside Critical Infrastructure, Energy, and Telecom environments.",
+      "published": "2026-11-05T16:58:57.411Z",
+      "report_types": [
+        "threat-report",
+        "attack-pattern",
+        "indicator"
+      ],
+      "object_refs": [
+        "threat-actor--934d296cd127-0001-4000-8000-000000000001",
+        "malware--934d296cd127-0002-4000-8000-000000000002",
+        "indicator--934d296cd127-1000-4000-8000-008e540a8d10",
+        "indicator--934d296cd127-1001-4000-8000-4f0d503edbae",
+        "indicator--934d296cd127-1002-4000-8000-1469e712f8ed",
+        "indicator--934d296cd127-2000-4000-8000-860e3c6a142d",
+        "indicator--934d296cd127-2001-4000-8000-fff2aec2487e",
+        "indicator--934d296cd127-2002-4000-8000-213a99c8a1a8",
+        "indicator--934d296cd127-2003-4000-8000-4fc93380f790",
+        "attack-pattern--934d296cd127-3000-4000-8000-74009a9aef1a",
+        "attack-pattern--934d296cd127-3001-4000-8000-aabcb808a7fc",
+        "attack-pattern--934d296cd127-3002-4000-8000-3b7d4218fc12",
+        "attack-pattern--934d296cd127-3003-4000-8000-52061eb05389",
+        "attack-pattern--934d296cd127-3004-4000-8000-34dbc00ee480"
+      ],
+      "extensions": {
+        "x-google-secops-hunting": {
+          "udm_ioc_query": "// Google SecOps UDM Multi-Surface IoC Sweep: Volt Typhoon KV-Botnet Edge Router Zero-Day & Living-off-the-Land Campaign (CVE-2026-21409)\nmetadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\", \"PROCESS_LAUNCH\", \"FILE_CREATION\")\n(\n  target.ip in (\"172.104.91.214\", \"45.77.182.19\") or\n  principal.ip in (\"172.104.91.214\", \"45.77.182.19\") or\n  network.dns.questions.name in (\"wan-firmware-check-global.net\") or\n  target.hostname in (\"wan-firmware-check-global.net\") or\n  target.file.sha256 in (\"8f4b2e91c7d3a054e16b9847c12d390fa88b123490ce71ab56d0219e84c710aa\") or\n  principal.process.file.sha256 in (\"8f4b2e91c7d3a054e16b9847c12d390fa88b123490ce71ab56d0219e84c710aa\") or\n  target.file.md5 in (\"d91b448201fc8923ab0192fe7712ca90\") or\n  target.url in (\"https://wan-firmware-check-global.net/v2/cfg/mips64.bin\")\n)",
+          "udm_behavioral_query": "// Google SecOps UDM Behavioral Hunt: KV-Botnet\nmetadata.event_type in (\"PROCESS_LAUNCH\", \"REGISTRY_MODIFICATION\", \"FILE_CREATION\", \"SCHEDULED_TASK_CREATION\")\n(\n  principal.process.file.full_path = /.*(ntds\\.dit).*/ nocase or\n  target.process.file.full_path = /.*(ntds\\.dit).*/ nocase or\n  target.process.command_line = /.*ntdsutil.*/ nocase or\n  target.registry.registry_key = /.*tcp.*/ nocase\n)\nprincipal.user.userid != \"SYSTEM\"",
+          "yaral_2_rule": "rule volt_typhoon_kv_botnet_edge_router_zero_day__ti2026 {\n  meta:\n    author = \"Google SecOps Detection Engineering\"\n    description = \"Detects execution artifacts and C2 communication associated with Volt Typhoon KV-Botnet Edge Router Zero-Day & Living-off-the-Land Campaign (CVE-2026-21409)\"\n    severity = \"CRITICAL\"\n    priority = \"HIGH\"\n    mitre_attack = \"T1190, T1047, T1003.003, T1090.001, T1078.002\"\n    cve_references = \"CVE-2026-21409, CVE-2025-39112\"\n    threat_actor = \"Volt Typhoon\"\n    malware_family = \"KV-Botnet\"\n\n  events:\n    $proc.metadata.event_type in (\"PROCESS_LAUNCH\", \"FILE_CREATION\", \"REGISTRY_MODIFICATION\")\n    $proc.principal.hostname = $hostname\n    (\n      $proc.target.file.sha256 in (\"8f4b2e91c7d3a054e16b9847c12d390fa88b123490ce71ab56d0219e84c710aa\") nocase or\n      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase\n    )\n\n    $net.metadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\")\n    $net.principal.hostname = $hostname\n    (\n      $net.target.ip in (\"172.104.91.214\", \"45.77.182.19\") or\n      $net.network.dns.questions.name in (\"wan-firmware-check-global.net\") nocase\n    )\n\n  match:\n    $hostname over 15m\n\n  outcome:\n    $risk_score = max(95)\n    $mitre_techniques = array_distinct(\"T1190, T1047, T1003.003, T1090.001, T1078.002\")\n    $affected_host = array_distinct($hostname)\n    $principal_user = array_distinct($proc.principal.user.userid)\n    $command_lines = array_distinct($proc.target.process.command_line)\n    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))\n\n  condition:\n    $proc and $net\n}",
+          "severity": "Critical",
+          "cve_ids": [
+            "CVE-2026-21409",
+            "CVE-2025-39112"
+          ],
+          "target_industries": [
+            "Critical Infrastructure/Energy",
+            "Telecom",
+            "Government"
+          ],
+          "target_regions": [
+            "North America",
+            "APAC",
+            "Global"
+          ]
+        }
+      }
+    },
+    {
+      "type": "threat-actor",
+      "spec_version": "2.1",
+      "id": "threat-actor--63a84a12244b-0001-4000-8000-000000000001",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "RansomHub & LockBit Affiliates",
+      "description": "Threat actor associated with LockBit 4.0 & RansomHub Dual-Extortion Wave Targeting BFSI & Healthcare VMware ESXi Hypervisors",
+      "threat_actor_types": [
+        "zero-day exploits"
+      ]
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--63a84a12244b-0002-4000-8000-000000000002",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "LockBit",
+      "malware_types": [
+        "ransomware"
+      ],
+      "is_family": true
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--63a84a12244b-1000-4000-8000-64c8c8041a33",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "SHA-256 File Hash: lockbit4_esxi_linux_amd64.elf",
+      "pattern": "[file:hashes.'SHA-256' = '3c90e1f8452a6b77d09142c8a3b55f190e842c11ab99402d67e12904fa18c321']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T15:58:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--63a84a12244b-1001-4000-8000-a25b861073fb",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "SHA-256 File Hash: poortry.sys",
+      "pattern": "[file:hashes.'SHA-256' = '9a11b208f4c5d7821e330a94bc81209fa771230c8421b90e5541a23f0981d44e']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T15:58:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--63a84a12244b-1002-4000-8000-d2c8b0accdd4",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "MD5 File Hash: svchost_rclone.exe",
+      "pattern": "[file:hashes.'MD5' = '7f8102c94a11b802e34910cd8821fa04']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T15:58:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--63a84a12244b-2000-4000-8000-3ec163fa637c",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "IPv4: 193.149.176.88",
+      "description": "Cobalt Strike / Sliver HTTPS C2 Server",
+      "pattern": "[ipv4-addr:value = '193.149.176.88']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T15:58:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--63a84a12244b-2001-4000-8000-f80240ce1177",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "IPv4: 185.215.113.42",
+      "description": "Rclone Exfiltration Endpoint",
+      "pattern": "[ipv4-addr:value = '185.215.113.42']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T15:58:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--63a84a12244b-2002-4000-8000-7653825a293a",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Domain: cdn-veeam-telemetry-sync.com",
+      "description": "Stage-2 Beacon Domain",
+      "pattern": "[domain-name:value = 'cdn-veeam-telemetry-sync.com']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T15:58:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--63a84a12244b-2003-4000-8000-cff9027652dd",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "URL: https://cdn-veeam-telemetry-sync.com/static/esxi_crypt.bin",
+      "description": "ESXi Encryptor Payload URL",
+      "pattern": "[url:value = 'https://cdn-veeam-telemetry-sync.com/static/esxi_crypt.bin']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T15:58:57.412Z"
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--63a84a12244b-3000-4000-8000-74009a9aef1a",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1190 - Exploit Public-Facing Application",
+      "description": "Exploits CVE-2026-1088 on enterprise VPN gateways.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1190",
+          "url": "https://attack.mitre.org/techniques/T1190/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--63a84a12244b-3001-4000-8000-3de5eb226c39",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1562.001 - Impair Defenses: Disable or Modify Tools",
+      "description": "Uses BYOVD kernel driver to blind EDR sensors.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1562.001",
+          "url": "https://attack.mitre.org/techniques/T1562/001/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--63a84a12244b-3002-4000-8000-19730bbc74fe",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1219 - Remote Access Software",
+      "description": "Abuses commercial RMM tools for persistent interactive access.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1219",
+          "url": "https://attack.mitre.org/techniques/T1219/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--63a84a12244b-3003-4000-8000-24d7c7906333",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1567.002 - Exfiltration Over Web Service: Exfiltration to Cloud Storage",
+      "description": "Uses renamed rclone.exe binary to stream data to external S3 buckets.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1567.002",
+          "url": "https://attack.mitre.org/techniques/T1567/002/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--63a84a12244b-3004-4000-8000-ccc4f3ca3a66",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1486 - Data Encrypted for Impact",
+      "description": "Encrypts VMware ESXi VMFS datastores and Windows SMB shares.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1486",
+          "url": "https://attack.mitre.org/techniques/T1486/"
+        }
+      ]
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--63a84a12244b-9999-4000-8000-000000009999",
+      "created": "2026-11-05T15:58:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "LockBit 4.0 & RansomHub Dual-Extortion Wave Targeting BFSI & Healthcare VMware ESXi Hypervisors",
+      "description": "A high-velocity campaign attributed to LockBit 4.0 and RansomHub affiliates is targeting Finance/BFSI and Healthcare enterprises across North America, Europe, and APAC. Operators gain initial access through unpatched VPN concentrators (CVE-2026-1088), dump credentials from Veeam Backup & Replication PostgreSQL databases, and pivot via SSH directly to VMware ESXi hypervisors to terminate running virtual machines via esxcli before encrypting datastore volumes.",
+      "published": "2026-11-05T15:58:57.412Z",
+      "report_types": [
+        "threat-report",
+        "attack-pattern",
+        "indicator"
+      ],
+      "object_refs": [
+        "threat-actor--63a84a12244b-0001-4000-8000-000000000001",
+        "malware--63a84a12244b-0002-4000-8000-000000000002",
+        "indicator--63a84a12244b-1000-4000-8000-64c8c8041a33",
+        "indicator--63a84a12244b-1001-4000-8000-a25b861073fb",
+        "indicator--63a84a12244b-1002-4000-8000-d2c8b0accdd4",
+        "indicator--63a84a12244b-2000-4000-8000-3ec163fa637c",
+        "indicator--63a84a12244b-2001-4000-8000-f80240ce1177",
+        "indicator--63a84a12244b-2002-4000-8000-7653825a293a",
+        "indicator--63a84a12244b-2003-4000-8000-cff9027652dd",
+        "attack-pattern--63a84a12244b-3000-4000-8000-74009a9aef1a",
+        "attack-pattern--63a84a12244b-3001-4000-8000-3de5eb226c39",
+        "attack-pattern--63a84a12244b-3002-4000-8000-19730bbc74fe",
+        "attack-pattern--63a84a12244b-3003-4000-8000-24d7c7906333",
+        "attack-pattern--63a84a12244b-3004-4000-8000-ccc4f3ca3a66"
+      ],
+      "extensions": {
+        "x-google-secops-hunting": {
+          "udm_ioc_query": "// Google SecOps UDM Multi-Surface IoC Sweep: LockBit 4.0 & RansomHub Dual-Extortion Wave Targeting BFSI & Healthcare VMware ESXi Hypervisors\nmetadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\", \"PROCESS_LAUNCH\", \"FILE_CREATION\")\n(\n  target.ip in (\"193.149.176.88\", \"185.215.113.42\") or\n  principal.ip in (\"193.149.176.88\", \"185.215.113.42\") or\n  network.dns.questions.name in (\"cdn-veeam-telemetry-sync.com\") or\n  target.hostname in (\"cdn-veeam-telemetry-sync.com\") or\n  target.file.sha256 in (\"3c90e1f8452a6b77d09142c8a3b55f190e842c11ab99402d67e12904fa18c321\", \"9a11b208f4c5d7821e330a94bc81209fa771230c8421b90e5541a23f0981d44e\") or\n  principal.process.file.sha256 in (\"3c90e1f8452a6b77d09142c8a3b55f190e842c11ab99402d67e12904fa18c321\", \"9a11b208f4c5d7821e330a94bc81209fa771230c8421b90e5541a23f0981d44e\") or\n  target.file.md5 in (\"7f8102c94a11b802e34910cd8821fa04\") or\n  target.url in (\"https://cdn-veeam-telemetry-sync.com/static/esxi_crypt.bin\")\n)",
+          "udm_behavioral_query": "// Google SecOps UDM Behavioral Hunt: LockBit\nmetadata.event_type in (\"PROCESS_LAUNCH\", \"REGISTRY_MODIFICATION\", \"FILE_CREATION\", \"SCHEDULED_TASK_CREATION\")\n(\n  principal.process.file.full_path = /.*(poortry\\.sys).*/ nocase or\n  target.process.file.full_path = /.*(poortry\\.sys).*/ nocase or\n  target.process.command_line = /.*vssadmin\\.exe.*/ nocase\n)\nprincipal.user.userid != \"SYSTEM\"",
+          "yaral_2_rule": "rule lockbit_4_0_ransomhub_dual_extortion_wave_ta_ti2026 {\n  meta:\n    author = \"Google SecOps Detection Engineering\"\n    description = \"Detects execution artifacts and C2 communication associated with LockBit 4.0 & RansomHub Dual-Extortion Wave Targeting BFSI & Healthcare VMware ESXi Hypervisors\"\n    severity = \"CRITICAL\"\n    priority = \"HIGH\"\n    mitre_attack = \"T1190, T1562.001, T1219, T1567.002, T1486\"\n    cve_references = \"CVE-2026-1088, CVE-2025-22457\"\n    threat_actor = \"RansomHub & LockBit Affiliates\"\n    malware_family = \"LockBit\"\n\n  events:\n    $proc.metadata.event_type in (\"PROCESS_LAUNCH\", \"FILE_CREATION\", \"REGISTRY_MODIFICATION\")\n    $proc.principal.hostname = $hostname\n    (\n      $proc.target.file.sha256 in (\"3c90e1f8452a6b77d09142c8a3b55f190e842c11ab99402d67e12904fa18c321\", \"9a11b208f4c5d7821e330a94bc81209fa771230c8421b90e5541a23f0981d44e\") nocase or\n      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase\n    )\n\n    $net.metadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\")\n    $net.principal.hostname = $hostname\n    (\n      $net.target.ip in (\"193.149.176.88\", \"185.215.113.42\") or\n      $net.network.dns.questions.name in (\"cdn-veeam-telemetry-sync.com\") nocase\n    )\n\n  match:\n    $hostname over 15m\n\n  outcome:\n    $risk_score = max(95)\n    $mitre_techniques = array_distinct(\"T1190, T1562.001, T1219, T1567.002, T1486\")\n    $affected_host = array_distinct($hostname)\n    $principal_user = array_distinct($proc.principal.user.userid)\n    $command_lines = array_distinct($proc.target.process.command_line)\n    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))\n\n  condition:\n    $proc and $net\n}",
+          "severity": "Critical",
+          "cve_ids": [
+            "CVE-2026-1088",
+            "CVE-2025-22457"
+          ],
+          "target_industries": [
+            "Finance/BFSI",
+            "Healthcare",
+            "Manufacturing"
+          ],
+          "target_regions": [
+            "North America",
+            "Europe",
+            "APAC"
+          ]
+        }
+      }
+    },
+    {
+      "type": "threat-actor",
+      "spec_version": "2.1",
+      "id": "threat-actor--b44fac62f8cc-0001-4000-8000-000000000001",
+      "created": "2026-11-05T14:03:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Storm-1607 MaaS Affiliates",
+      "description": "Threat actor associated with Lumma Stealer & RedLine MaaS Campaign Abusing Fake CAPTCHA & ClickFix PowerShell Lures",
+      "threat_actor_types": [
+        "phishing/bec"
+      ]
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--b44fac62f8cc-0002-4000-8000-000000000002",
+      "created": "2026-11-05T14:03:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Lumma Stealer",
+      "malware_types": [
+        "infostealers"
+      ],
+      "is_family": true
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b44fac62f8cc-1000-4000-8000-345729989bb8",
+      "created": "2026-11-05T14:03:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "SHA-256 File Hash: lumma_v5_build.exe",
+      "pattern": "[file:hashes.'SHA-256' = '5e81a4092c11f8730b4291d8c6a002e91f8823c401a9283bd71e6509a23c4410']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T14:03:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b44fac62f8cc-1001-4000-8000-67052342ab63",
+      "created": "2026-11-05T14:03:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "SHA-1 File Hash: captcha.hta",
+      "pattern": "[file:hashes.'SHA-1' = '1c8902a45f11b7823e0914d6a8821c09e4123b99']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T14:03:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b44fac62f8cc-1002-4000-8000-e23a4666ccc7",
+      "created": "2026-11-05T14:03:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "MD5 File Hash: l.ps1",
+      "pattern": "[file:hashes.'MD5' = 'a0912e4481bc72910d4451ef9012ab33']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T14:03:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b44fac62f8cc-2000-4000-8000-580a43721e7d",
+      "created": "2026-11-05T14:03:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "IPv4: 104.21.64.119",
+      "description": "ClickFix Lure Delivery Server",
+      "pattern": "[ipv4-addr:value = '104.21.64.119']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T14:03:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b44fac62f8cc-2001-4000-8000-f0104c76a8fe",
+      "created": "2026-11-05T14:03:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Domain: verify-human-cloudflare-check.cc",
+      "description": "Fake CAPTCHA Initial Stage Host",
+      "pattern": "[domain-name:value = 'verify-human-cloudflare-check.cc']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T14:03:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b44fac62f8cc-2002-4000-8000-4c15f830b597",
+      "created": "2026-11-05T14:03:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Domain: lumma-gate-panel99.su",
+      "description": "Lumma Stealer C2 Exfiltration Gate",
+      "pattern": "[domain-name:value = 'lumma-gate-panel99.su']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T14:03:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b44fac62f8cc-2003-4000-8000-c15be4cac302",
+      "created": "2026-11-05T14:03:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "URL: https://verify-human-cloudflare-check.cc/captcha.hta",
+      "description": "Malicious HTA Payload URL",
+      "pattern": "[url:value = 'https://verify-human-cloudflare-check.cc/captcha.hta']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T14:03:57.412Z"
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--b44fac62f8cc-3000-4000-8000-76f15d643622",
+      "created": "2026-11-05T14:03:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1204.002 - User Execution: Malicious File / Paste",
+      "description": "Tricks user into executing clipboard command via Windows Run dialog.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1204.002",
+          "url": "https://attack.mitre.org/techniques/T1204/002/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--b44fac62f8cc-3001-4000-8000-879fcf7c6185",
+      "created": "2026-11-05T14:03:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1218.005 - System Binary Proxy Execution: Mshta",
+      "description": "Proxies execution of remote HTA payload via mshta.exe.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1218.005",
+          "url": "https://attack.mitre.org/techniques/T1218/005/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--b44fac62f8cc-3002-4000-8000-b9cb53ecf8da",
+      "created": "2026-11-05T14:03:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1055.012 - Process Injection: Process Hollowing",
+      "description": "Injects Lumma Stealer into suspended RegAsm.exe process.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1055.012",
+          "url": "https://attack.mitre.org/techniques/T1055/012/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--b44fac62f8cc-3003-4000-8000-d068588a78fd",
+      "created": "2026-11-05T14:03:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1539 - Steal Web Session Cookie",
+      "description": "Bypasses Chrome App-Bound Encryption to steal active SSO cookies.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1539",
+          "url": "https://attack.mitre.org/techniques/T1539/"
+        }
+      ]
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--b44fac62f8cc-9999-4000-8000-000000009999",
+      "created": "2026-11-05T14:03:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Lumma Stealer & RedLine MaaS Campaign Abusing Fake CAPTCHA & ClickFix PowerShell Lures",
+      "description": "Threat researchers at BleepingComputer and Unit 42 have tracked a surge in \"ClickFix\" social engineering attacks delivering Lumma Stealer, RedLine, and Vidar info-stealers across Technology/SaaS, Retail, and Finance sectors in APAC, Europe, and LATAM. Compromised websites and malvertising redirects prompt victims with a spoofed \"Verify You Are Human\" dialog that copies an obfuscated mshta.exe / PowerShell command into the Windows clipboard and instructs the user to press Win+R and Enter.",
+      "published": "2026-11-05T14:03:57.412Z",
+      "report_types": [
+        "threat-report",
+        "attack-pattern",
+        "indicator"
+      ],
+      "object_refs": [
+        "threat-actor--b44fac62f8cc-0001-4000-8000-000000000001",
+        "malware--b44fac62f8cc-0002-4000-8000-000000000002",
+        "indicator--b44fac62f8cc-1000-4000-8000-345729989bb8",
+        "indicator--b44fac62f8cc-1001-4000-8000-67052342ab63",
+        "indicator--b44fac62f8cc-1002-4000-8000-e23a4666ccc7",
+        "indicator--b44fac62f8cc-2000-4000-8000-580a43721e7d",
+        "indicator--b44fac62f8cc-2001-4000-8000-f0104c76a8fe",
+        "indicator--b44fac62f8cc-2002-4000-8000-4c15f830b597",
+        "indicator--b44fac62f8cc-2003-4000-8000-c15be4cac302",
+        "attack-pattern--b44fac62f8cc-3000-4000-8000-76f15d643622",
+        "attack-pattern--b44fac62f8cc-3001-4000-8000-879fcf7c6185",
+        "attack-pattern--b44fac62f8cc-3002-4000-8000-b9cb53ecf8da",
+        "attack-pattern--b44fac62f8cc-3003-4000-8000-d068588a78fd"
+      ],
+      "extensions": {
+        "x-google-secops-hunting": {
+          "udm_ioc_query": "// Google SecOps UDM Multi-Surface IoC Sweep: Lumma Stealer & RedLine MaaS Campaign Abusing Fake CAPTCHA & ClickFix PowerShell Lures\nmetadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\", \"PROCESS_LAUNCH\", \"FILE_CREATION\")\n(\n  target.ip in (\"104.21.64.119\") or\n  principal.ip in (\"104.21.64.119\") or\n  network.dns.questions.name in (\"verify-human-cloudflare-check.cc\", \"lumma-gate-panel99.su\") or\n  target.hostname in (\"verify-human-cloudflare-check.cc\", \"lumma-gate-panel99.su\") or\n  target.file.sha256 in (\"5e81a4092c11f8730b4291d8c6a002e91f8823c401a9283bd71e6509a23c4410\") or\n  principal.process.file.sha256 in (\"5e81a4092c11f8730b4291d8c6a002e91f8823c401a9283bd71e6509a23c4410\") or\n  target.file.md5 in (\"a0912e4481bc72910d4451ef9012ab33\") or\n  target.url in (\"https://verify-human-cloudflare-check.cc/captcha.hta\")\n)",
+          "udm_behavioral_query": "// Google SecOps UDM Behavioral Hunt: Lumma Stealer\nmetadata.event_type in (\"PROCESS_LAUNCH\", \"REGISTRY_MODIFICATION\", \"FILE_CREATION\", \"SCHEDULED_TASK_CREATION\")\n(\n  principal.process.file.full_path = /.*(RegAsm\\.exe).*/ nocase or\n  target.process.file.full_path = /.*(RegAsm\\.exe).*/ nocase or\n  target.process.command_line = /.*mshta\\.exe.*/ nocase or\n  target.registry.registry_key = /.*RunMRU.*/ nocase\n)\nprincipal.user.userid != \"SYSTEM\"",
+          "yaral_2_rule": "rule lumma_stealer_redline_maas_campaign_abusing__ti2026 {\n  meta:\n    author = \"Google SecOps Detection Engineering\"\n    description = \"Detects execution artifacts and C2 communication associated with Lumma Stealer & RedLine MaaS Campaign Abusing Fake CAPTCHA & ClickFix PowerShell Lures\"\n    severity = \"HIGH\"\n    priority = \"MEDIUM\"\n    mitre_attack = \"T1204.002, T1218.005, T1055.012, T1539\"\n    cve_references = \"CVE-2025-21333\"\n    threat_actor = \"Storm-1607 MaaS Affiliates\"\n    malware_family = \"Lumma Stealer\"\n\n  events:\n    $proc.metadata.event_type in (\"PROCESS_LAUNCH\", \"FILE_CREATION\", \"REGISTRY_MODIFICATION\")\n    $proc.principal.hostname = $hostname\n    (\n      $proc.target.file.sha256 in (\"5e81a4092c11f8730b4291d8c6a002e91f8823c401a9283bd71e6509a23c4410\") nocase or\n      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase\n    )\n\n    $net.metadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\")\n    $net.principal.hostname = $hostname\n    (\n      $net.target.ip in (\"104.21.64.119\") or\n      $net.network.dns.questions.name in (\"verify-human-cloudflare-check.cc\", \"lumma-gate-panel99.su\") nocase\n    )\n\n  match:\n    $hostname over 15m\n\n  outcome:\n    $risk_score = max(80)\n    $mitre_techniques = array_distinct(\"T1204.002, T1218.005, T1055.012, T1539\")\n    $affected_host = array_distinct($hostname)\n    $principal_user = array_distinct($proc.principal.user.userid)\n    $command_lines = array_distinct($proc.target.process.command_line)\n    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))\n\n  condition:\n    $proc and $net\n}",
+          "severity": "High",
+          "cve_ids": [
+            "CVE-2025-21333"
+          ],
+          "target_industries": [
+            "Technology/SaaS",
+            "Retail",
+            "Finance/BFSI"
+          ],
+          "target_regions": [
+            "APAC",
+            "Europe",
+            "LATAM",
+            "Global"
+          ]
+        }
+      }
+    },
+    {
+      "type": "threat-actor",
+      "spec_version": "2.1",
+      "id": "threat-actor--220b3374fbf7-0001-4000-8000-000000000001",
+      "created": "2026-11-05T03:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "APT29",
+      "description": "Threat actor associated with APT29 (Midnight Blizzard) OAuth Token & Entra ID Cross-Tenant Cloud Identity Intrusion",
+      "threat_actor_types": [
+        "cloud/identity attacks"
+      ]
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--220b3374fbf7-0002-4000-8000-000000000002",
+      "created": "2026-11-05T03:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "GraphAPI-Backdoor",
+      "malware_types": [
+        "rats"
+      ],
+      "is_family": true
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--220b3374fbf7-1000-4000-8000-94a8055e77e9",
+      "created": "2026-11-05T03:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "SHA-256 File Hash: graph_harvester_worker.py",
+      "pattern": "[file:hashes.'SHA-256' = '1d77c8902a44e612b09384f712c90a8834b1209fe7612a409cb812390ef41a20']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T03:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--220b3374fbf7-1001-4000-8000-6d71cda28422",
+      "created": "2026-11-05T03:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "MD5 File Hash: oauth_cert_rogue.pfx",
+      "pattern": "[file:hashes.'MD5' = 'e44190c82a117b9034f812c09a4412b8']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T03:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--220b3374fbf7-2000-4000-8000-e432b330ec99",
+      "created": "2026-11-05T03:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "IPv4: 194.36.191.74",
+      "description": "APT29 OAuth Token Replay Exit Node",
+      "pattern": "[ipv4-addr:value = '194.36.191.74']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T03:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--220b3374fbf7-2001-4000-8000-758aab524248",
+      "created": "2026-11-05T03:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "IPv4: 91.199.84.112",
+      "description": "SOCKS5 Residential Proxy Aggregator",
+      "pattern": "[ipv4-addr:value = '91.199.84.112']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T03:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--220b3374fbf7-2002-4000-8000-26fec3409eb9",
+      "created": "2026-11-05T03:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Domain: login-msft-sso-federation.org",
+      "description": "AiTM Token Capture Relay",
+      "pattern": "[domain-name:value = 'login-msft-sso-federation.org']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T03:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--220b3374fbf7-2003-4000-8000-66fcfe9ef9ef",
+      "created": "2026-11-05T03:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "URL: https://login-msft-sso-federation.org/oauth2/v2.0/authorize",
+      "description": "Rogue OAuth Consent Grant Phishing URI",
+      "pattern": "[url:value = 'https://login-msft-sso-federation.org/oauth2/v2.0/authorize']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-05T03:33:57.412Z"
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--220b3374fbf7-3000-4000-8000-951465ec6663",
+      "created": "2026-11-05T03:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1110.003 - Brute Force: Password Spraying",
+      "description": "Low-velocity password spraying via residential proxy mesh.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1110.003",
+          "url": "https://attack.mitre.org/techniques/T1110/003/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--220b3374fbf7-3001-4000-8000-ec2b42ac64be",
+      "created": "2026-11-05T03:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1098.001 - Account Manipulation: Additional Cloud Credentials",
+      "description": "Injects rogue client secrets into trusted OAuth service principals.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1098.001",
+          "url": "https://attack.mitre.org/techniques/T1098/001/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--220b3374fbf7-3002-4000-8000-650f8122ee32",
+      "created": "2026-11-05T03:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1098.003 - Account Manipulation: Additional Cloud Roles",
+      "description": "Grants Global Administrator and Mail.ReadWrite Graph API roles.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1098.003",
+          "url": "https://attack.mitre.org/techniques/T1098/003/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--220b3374fbf7-3003-4000-8000-02a839f48c6e",
+      "created": "2026-11-05T03:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1550.001 - Use Alternate Authentication Material: Application Access Token",
+      "description": "Bypasses interactive MFA checks using OAuth bearer tokens.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1550.001",
+          "url": "https://attack.mitre.org/techniques/T1550/001/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--220b3374fbf7-3004-4000-8000-c24ac7867195",
+      "created": "2026-11-05T03:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1114.002 - Email Collection: Remote Email Collection",
+      "description": "Harvests executive and security team mailboxes via MS Graph API.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1114.002",
+          "url": "https://attack.mitre.org/techniques/T1114/002/"
+        }
+      ]
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--220b3374fbf7-9999-4000-8000-000000009999",
+      "created": "2026-11-05T03:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "APT29 (Midnight Blizzard) OAuth Token & Entra ID Cross-Tenant Cloud Identity Intrusion",
+      "description": "Mandiant and Microsoft Threat Intelligence report sustained cloud identity intrusions by APT29 (Midnight Blizzard) targeting Government, Technology/SaaS, and Defense organizations in Europe, North America, and Middle East. The actor leverages residential proxy networks to perform low-and-slow password spraying against non-MFA legacy test tenants, then registers rogue multi-tenant OAuth applications granted high-privilege Microsoft Graph API permissions (RoleManagement.ReadWrite.Directory and Mail.ReadWrite).",
+      "published": "2026-11-05T03:33:57.412Z",
+      "report_types": [
+        "threat-report",
+        "attack-pattern",
+        "indicator"
+      ],
+      "object_refs": [
+        "threat-actor--220b3374fbf7-0001-4000-8000-000000000001",
+        "malware--220b3374fbf7-0002-4000-8000-000000000002",
+        "indicator--220b3374fbf7-1000-4000-8000-94a8055e77e9",
+        "indicator--220b3374fbf7-1001-4000-8000-6d71cda28422",
+        "indicator--220b3374fbf7-2000-4000-8000-e432b330ec99",
+        "indicator--220b3374fbf7-2001-4000-8000-758aab524248",
+        "indicator--220b3374fbf7-2002-4000-8000-26fec3409eb9",
+        "indicator--220b3374fbf7-2003-4000-8000-66fcfe9ef9ef",
+        "attack-pattern--220b3374fbf7-3000-4000-8000-951465ec6663",
+        "attack-pattern--220b3374fbf7-3001-4000-8000-ec2b42ac64be",
+        "attack-pattern--220b3374fbf7-3002-4000-8000-650f8122ee32",
+        "attack-pattern--220b3374fbf7-3003-4000-8000-02a839f48c6e",
+        "attack-pattern--220b3374fbf7-3004-4000-8000-c24ac7867195"
+      ],
+      "extensions": {
+        "x-google-secops-hunting": {
+          "udm_ioc_query": "// Google SecOps UDM Multi-Surface IoC Sweep: APT29 (Midnight Blizzard) OAuth Token & Entra ID Cross-Tenant Cloud Identity Intrusion\nmetadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\", \"PROCESS_LAUNCH\", \"FILE_CREATION\")\n(\n  target.ip in (\"194.36.191.74\", \"91.199.84.112\") or\n  principal.ip in (\"194.36.191.74\", \"91.199.84.112\") or\n  network.dns.questions.name in (\"login-msft-sso-federation.org\") or\n  target.hostname in (\"login-msft-sso-federation.org\") or\n  target.file.sha256 in (\"1d77c8902a44e612b09384f712c90a8834b1209fe7612a409cb812390ef41a20\") or\n  principal.process.file.sha256 in (\"1d77c8902a44e612b09384f712c90a8834b1209fe7612a409cb812390ef41a20\") or\n  target.file.md5 in (\"e44190c82a117b9034f812c09a4412b8\") or\n  target.url in (\"https://login-msft-sso-federation.org/oauth2/v2.0/authorize\")\n)",
+          "udm_behavioral_query": "// Google SecOps UDM Behavioral Hunt: GraphAPI-Backdoor\nmetadata.event_type in (\"PROCESS_LAUNCH\", \"REGISTRY_MODIFICATION\", \"FILE_CREATION\", \"SCHEDULED_TASK_CREATION\")\n(\n  principal.process.file.full_path = /.*(\\.msal_token_cache_apt29\\.json).*/ nocase or\n  target.process.file.full_path = /.*(\\.msal_token_cache_apt29\\.json).*/ nocase or\n  target.process.command_line = /.*credential.*/ nocase\n)\nprincipal.user.userid != \"SYSTEM\"",
+          "yaral_2_rule": "rule apt29_midnight_blizzard_oauth_token_entra_id_ti2026 {\n  meta:\n    author = \"Google SecOps Detection Engineering\"\n    description = \"Detects execution artifacts and C2 communication associated with APT29 (Midnight Blizzard) OAuth Token & Entra ID Cross-Tenant Cloud Identity Intrusion\"\n    severity = \"CRITICAL\"\n    priority = \"HIGH\"\n    mitre_attack = \"T1110.003, T1098.001, T1098.003, T1550.001, T1114.002\"\n    cve_references = \"CVE-2025-49011\"\n    threat_actor = \"APT29\"\n    malware_family = \"GraphAPI-Backdoor\"\n\n  events:\n    $proc.metadata.event_type in (\"PROCESS_LAUNCH\", \"FILE_CREATION\", \"REGISTRY_MODIFICATION\")\n    $proc.principal.hostname = $hostname\n    (\n      $proc.target.file.sha256 in (\"1d77c8902a44e612b09384f712c90a8834b1209fe7612a409cb812390ef41a20\") nocase or\n      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase\n    )\n\n    $net.metadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\")\n    $net.principal.hostname = $hostname\n    (\n      $net.target.ip in (\"194.36.191.74\", \"91.199.84.112\") or\n      $net.network.dns.questions.name in (\"login-msft-sso-federation.org\") nocase\n    )\n\n  match:\n    $hostname over 15m\n\n  outcome:\n    $risk_score = max(95)\n    $mitre_techniques = array_distinct(\"T1110.003, T1098.001, T1098.003, T1550.001, T1114.002\")\n    $affected_host = array_distinct($hostname)\n    $principal_user = array_distinct($proc.principal.user.userid)\n    $command_lines = array_distinct($proc.target.process.command_line)\n    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))\n\n  condition:\n    $proc and $net\n}",
+          "severity": "Critical",
+          "cve_ids": [
+            "CVE-2025-49011"
+          ],
+          "target_industries": [
+            "Government",
+            "Technology/SaaS",
+            "Telecom"
+          ],
+          "target_regions": [
+            "Europe",
+            "North America",
+            "Middle East"
+          ]
+        }
+      }
+    },
+    {
+      "type": "threat-actor",
+      "spec_version": "2.1",
+      "id": "threat-actor--8eb9e7b00fff-0001-4000-8000-000000000001",
+      "created": "2026-11-03T13:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Lazarus",
+      "description": "Threat actor associated with Lazarus Group & APT41 Polyglot Supply Chain Attack on PyPI / NPM CI/CD Pipelines",
+      "threat_actor_types": [
+        "supply chain attacks"
+      ]
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--8eb9e7b00fff-0002-4000-8000-000000000002",
+      "created": "2026-11-03T13:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "InvisibleFerret",
+      "malware_types": [
+        "loaders"
+      ],
+      "is_family": true
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--8eb9e7b00fff-1000-4000-8000-2129fd205a25",
+      "created": "2026-11-03T13:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "SHA-256 File Hash: preinstall-telemetry.js",
+      "pattern": "[file:hashes.'SHA-256' = '7b12c904fa8812e309d451c78a2310f98e1204bc7761a2390ef1284c9012a44b']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-03T13:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--8eb9e7b00fff-1001-4000-8000-0592a2d814fb",
+      "created": "2026-11-03T13:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "SHA-256 File Hash: invisible_ferret_main.py",
+      "pattern": "[file:hashes.'SHA-256' = '4e0912a88c34b7120f9812d34c56a0192b8412f90e3312a78c9012b45e11a802']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-03T13:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--8eb9e7b00fff-1002-4000-8000-2c72c9b66a14",
+      "created": "2026-11-03T13:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "MD5 File Hash: beavertail_darwin.macho",
+      "pattern": "[file:hashes.'MD5' = 'c1902a8471bf9023e1124c890a7712d4']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-03T13:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--8eb9e7b00fff-2000-4000-8000-367aa538709d",
+      "created": "2026-11-03T13:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "IPv4: 147.124.214.131",
+      "description": "InvisibleFerret C2 Server (Port 1224)",
+      "pattern": "[ipv4-addr:value = '147.124.214.131']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-03T13:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--8eb9e7b00fff-2001-4000-8000-0f8e97fc5eb8",
+      "created": "2026-11-03T13:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "IPv4: 45.61.169.210",
+      "description": "BeaverTail Staging Node",
+      "pattern": "[ipv4-addr:value = '45.61.169.210']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-03T13:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--8eb9e7b00fff-2002-4000-8000-4740bc1679e3",
+      "created": "2026-11-03T13:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Domain: registry-npm-mirror-telemetry.io",
+      "description": "Malicious Dependency Fallback Host",
+      "pattern": "[domain-name:value = 'registry-npm-mirror-telemetry.io']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-03T13:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--8eb9e7b00fff-2003-4000-8000-d1ce08d03171",
+      "created": "2026-11-03T13:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "URL: http://147.124.214.131:1224/client/99",
+      "description": "Second-Stage Python Module Download URI",
+      "pattern": "[url:value = 'http://147.124.214.131:1224/client/99']",
+      "pattern_type": "stix",
+      "valid_from": "2026-11-03T13:33:57.412Z"
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--8eb9e7b00fff-3000-4000-8000-cee43cec2fc6",
+      "created": "2026-11-03T13:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1195.001 - Supply Chain Compromise: Compromise Software Dependencies",
+      "description": "Injects BeaverTail loader into open-source NPM/PyPI packages.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1195.001",
+          "url": "https://attack.mitre.org/techniques/T1195/001/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--8eb9e7b00fff-3001-4000-8000-4b5ce808e68d",
+      "created": "2026-11-03T13:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1059.006 - Command and Scripting Interpreter: Python",
+      "description": "Executes InvisibleFerret cross-platform Python backdoor.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1059.006",
+          "url": "https://attack.mitre.org/techniques/T1059/006/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--8eb9e7b00fff-3002-4000-8000-931dcc40ec37",
+      "created": "2026-11-03T13:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1552.001 - Unsecured Credentials: Credentials In Files",
+      "description": "Scans filesystem for .env, .npmrc, .aws/credentials, and .kube/config.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1552.001",
+          "url": "https://attack.mitre.org/techniques/T1552/001/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--8eb9e7b00fff-3003-4000-8000-8df10af8bb41",
+      "created": "2026-11-03T13:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1027 - Obfuscated Files or Information",
+      "description": "Uses marshal + zlib + base64 obfuscation in Python scripts.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1027",
+          "url": "https://attack.mitre.org/techniques/T1027/"
+        }
+      ]
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--8eb9e7b00fff-9999-4000-8000-000000009999",
+      "created": "2026-11-03T13:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Lazarus Group & APT41 Polyglot Supply Chain Attack on PyPI / NPM CI/CD Pipelines",
+      "description": "Lazarus Group (TraderTraitor) and overlapping APT41 supply chain clusters have published typosquatted and hijacked packages on NPM and PyPI targeting Finance/BFSI, cryptocurrency exchanges, and SaaS engineering teams in APAC, North America, and Europe. During `npm install` or `pip install` inside GitHub Actions or developer laptops, preinstall hooks execute obfuscated Node.js/Python payloads (BeaverTail) that harvest `.env` secrets, Kubernetes kubeconfigs, and SSH keys before deploying the InvisibleFerret modular backdoor.",
+      "published": "2026-11-03T13:33:57.412Z",
+      "report_types": [
+        "threat-report",
+        "attack-pattern",
+        "indicator"
+      ],
+      "object_refs": [
+        "threat-actor--8eb9e7b00fff-0001-4000-8000-000000000001",
+        "malware--8eb9e7b00fff-0002-4000-8000-000000000002",
+        "indicator--8eb9e7b00fff-1000-4000-8000-2129fd205a25",
+        "indicator--8eb9e7b00fff-1001-4000-8000-0592a2d814fb",
+        "indicator--8eb9e7b00fff-1002-4000-8000-2c72c9b66a14",
+        "indicator--8eb9e7b00fff-2000-4000-8000-367aa538709d",
+        "indicator--8eb9e7b00fff-2001-4000-8000-0f8e97fc5eb8",
+        "indicator--8eb9e7b00fff-2002-4000-8000-4740bc1679e3",
+        "indicator--8eb9e7b00fff-2003-4000-8000-d1ce08d03171",
+        "attack-pattern--8eb9e7b00fff-3000-4000-8000-cee43cec2fc6",
+        "attack-pattern--8eb9e7b00fff-3001-4000-8000-4b5ce808e68d",
+        "attack-pattern--8eb9e7b00fff-3002-4000-8000-931dcc40ec37",
+        "attack-pattern--8eb9e7b00fff-3003-4000-8000-8df10af8bb41"
+      ],
+      "extensions": {
+        "x-google-secops-hunting": {
+          "udm_ioc_query": "// Google SecOps UDM Multi-Surface IoC Sweep: Lazarus Group & APT41 Polyglot Supply Chain Attack on PyPI / NPM CI/CD Pipelines\nmetadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\", \"PROCESS_LAUNCH\", \"FILE_CREATION\")\n(\n  target.ip in (\"147.124.214.131\", \"45.61.169.210\") or\n  principal.ip in (\"147.124.214.131\", \"45.61.169.210\") or\n  network.dns.questions.name in (\"registry-npm-mirror-telemetry.io\") or\n  target.hostname in (\"registry-npm-mirror-telemetry.io\") or\n  target.file.sha256 in (\"7b12c904fa8812e309d451c78a2310f98e1204bc7761a2390ef1284c9012a44b\", \"4e0912a88c34b7120f9812d34c56a0192b8412f90e3312a78c9012b45e11a802\") or\n  principal.process.file.sha256 in (\"7b12c904fa8812e309d451c78a2310f98e1204bc7761a2390ef1284c9012a44b\", \"4e0912a88c34b7120f9812d34c56a0192b8412f90e3312a78c9012b45e11a802\") or\n  target.file.md5 in (\"c1902a8471bf9023e1124c890a7712d4\") or\n  target.url in (\"http://147.124.214.131:1224/client/99\")\n)",
+          "udm_behavioral_query": "// Google SecOps UDM Behavioral Hunt: InvisibleFerret\nmetadata.event_type in (\"PROCESS_LAUNCH\", \"REGISTRY_MODIFICATION\", \"FILE_CREATION\", \"SCHEDULED_TASK_CREATION\")\n(\n  principal.process.file.full_path = /.*(main\\.py|python\\.exe).*/ nocase or\n  target.process.file.full_path = /.*(main\\.py|python\\.exe).*/ nocase or\n  target.process.command_line = /.*python3.*/ nocase\n)\nprincipal.user.userid != \"SYSTEM\"",
+          "yaral_2_rule": "rule lazarus_group_apt41_polyglot_supply_chain_at_ti2026 {\n  meta:\n    author = \"Google SecOps Detection Engineering\"\n    description = \"Detects execution artifacts and C2 communication associated with Lazarus Group & APT41 Polyglot Supply Chain Attack on PyPI / NPM CI/CD Pipelines\"\n    severity = \"CRITICAL\"\n    priority = \"HIGH\"\n    mitre_attack = \"T1195.001, T1059.006, T1552.001, T1027\"\n    cve_references = \"CVE-2026-0419\"\n    threat_actor = \"Lazarus\"\n    malware_family = \"InvisibleFerret\"\n\n  events:\n    $proc.metadata.event_type in (\"PROCESS_LAUNCH\", \"FILE_CREATION\", \"REGISTRY_MODIFICATION\")\n    $proc.principal.hostname = $hostname\n    (\n      $proc.target.file.sha256 in (\"7b12c904fa8812e309d451c78a2310f98e1204bc7761a2390ef1284c9012a44b\", \"4e0912a88c34b7120f9812d34c56a0192b8412f90e3312a78c9012b45e11a802\") nocase or\n      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase\n    )\n\n    $net.metadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\")\n    $net.principal.hostname = $hostname\n    (\n      $net.target.ip in (\"147.124.214.131\", \"45.61.169.210\") or\n      $net.network.dns.questions.name in (\"registry-npm-mirror-telemetry.io\") nocase\n    )\n\n  match:\n    $hostname over 15m\n\n  outcome:\n    $risk_score = max(95)\n    $mitre_techniques = array_distinct(\"T1195.001, T1059.006, T1552.001, T1027\")\n    $affected_host = array_distinct($hostname)\n    $principal_user = array_distinct($proc.principal.user.userid)\n    $command_lines = array_distinct($proc.target.process.command_line)\n    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))\n\n  condition:\n    $proc and $net\n}",
+          "severity": "Critical",
+          "cve_ids": [
+            "CVE-2026-0419"
+          ],
+          "target_industries": [
+            "Finance/BFSI",
+            "Technology/SaaS",
+            "Telecom"
+          ],
+          "target_regions": [
+            "APAC",
+            "North America",
+            "Europe",
+            "Global"
+          ]
+        }
+      }
+    },
+    {
+      "type": "threat-actor",
+      "spec_version": "2.1",
+      "id": "threat-actor--b6d2dcfed41b-0001-4000-8000-000000000001",
+      "created": "2026-10-30T17:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Akira Syndicate",
+      "description": "Threat actor associated with Akira & BlackCat Linux/Windows Ransomware Campaign Targeting Manufacturing & Retail OT Gateways",
+      "threat_actor_types": [
+        "zero-day exploits"
+      ]
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--b6d2dcfed41b-0002-4000-8000-000000000002",
+      "created": "2026-10-30T17:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Akira",
+      "malware_types": [
+        "ransomware"
+      ],
+      "is_family": true
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b6d2dcfed41b-1000-4000-8000-066a80ee09ff",
+      "created": "2026-10-30T17:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "SHA-256 File Hash: akira_w64.exe",
+      "pattern": "[file:hashes.'SHA-256' = '6c44a109e821b7304d9120f8a4c551290e8412a309bc7712e4509a12d84f9011']",
+      "pattern_type": "stix",
+      "valid_from": "2026-10-30T17:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b6d2dcfed41b-1001-4000-8000-6b9f1c887885",
+      "created": "2026-10-30T17:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "SHA-1 File Hash: SharpHound.exe",
+      "pattern": "[file:hashes.'SHA-1' = '8b1209f44a712c90e3412b88a0912d45f7123a01']",
+      "pattern_type": "stix",
+      "valid_from": "2026-10-30T17:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b6d2dcfed41b-1002-4000-8000-8935edc2cf6e",
+      "created": "2026-10-30T17:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "MD5 File Hash: chisel_win64.exe",
+      "pattern": "[file:hashes.'MD5' = '3e9012a44b812c709d1124f89a0123e5']",
+      "pattern_type": "stix",
+      "valid_from": "2026-10-30T17:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b6d2dcfed41b-2000-4000-8000-19a64bc87ef2",
+      "created": "2026-10-30T17:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "IPv4: 185.172.128.95",
+      "description": "Akira SFTP Exfiltration Server",
+      "pattern": "[ipv4-addr:value = '185.172.128.95']",
+      "pattern_type": "stix",
+      "valid_from": "2026-10-30T17:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b6d2dcfed41b-2001-4000-8000-9407cbc6e360",
+      "created": "2026-10-30T17:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Domain: akira-leak-negotiation-portal.onion.ly",
+      "description": "Tor2Web Extortion Portal Gateway",
+      "pattern": "[domain-name:value = 'akira-leak-negotiation-portal.onion.ly']",
+      "pattern_type": "stix",
+      "valid_from": "2026-10-30T17:33:57.412Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b6d2dcfed41b-2002-4000-8000-903f5650b588",
+      "created": "2026-10-30T17:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "URL: https://akira-leak-negotiation-portal.onion.ly/chat/id-99412",
+      "description": "Victim Extortion Negotiation URL",
+      "pattern": "[url:value = 'https://akira-leak-negotiation-portal.onion.ly/chat/id-99412']",
+      "pattern_type": "stix",
+      "valid_from": "2026-10-30T17:33:57.412Z"
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--b6d2dcfed41b-3000-4000-8000-577f855450e0",
+      "created": "2026-10-30T17:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1133 - External Remote Services",
+      "description": "Gains entry via exposed SSL VPN gateways.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1133",
+          "url": "https://attack.mitre.org/techniques/T1133/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--b6d2dcfed41b-3001-4000-8000-d9f08e0a9dd7",
+      "created": "2026-10-30T17:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1572 - Protocol Tunneling",
+      "description": "Uses Cloudflared and Chisel for outbound C2 tunneling.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1572",
+          "url": "https://attack.mitre.org/techniques/T1572/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--b6d2dcfed41b-3002-4000-8000-805b94d86f7f",
+      "created": "2026-10-30T17:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1649 - Steal or Forge Authentication Certificates",
+      "description": "Exploits ADCS ESC1 template misconfigurations.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1649",
+          "url": "https://attack.mitre.org/techniques/T1649/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--b6d2dcfed41b-3003-4000-8000-da897e40264c",
+      "created": "2026-10-30T17:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1562.009 - Impair Defenses: Safe Mode Boot",
+      "description": "Reboots endpoints into Safe Mode prior to encryption.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1562.009",
+          "url": "https://attack.mitre.org/techniques/T1562/009/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--b6d2dcfed41b-3004-4000-8000-ccc4f3ca3a66",
+      "created": "2026-10-30T17:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1486 - Data Encrypted for Impact",
+      "description": "Executes ChaCha20 + RSA-4096 hybrid encryption.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1486",
+          "url": "https://attack.mitre.org/techniques/T1486/"
+        }
+      ]
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--b6d2dcfed41b-9999-4000-8000-000000009999",
+      "created": "2026-10-30T17:33:57.412Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Akira & BlackCat Linux/Windows Ransomware Campaign Targeting Manufacturing & Retail OT Gateways",
+      "description": "CrowdStrike Adversary Intelligence and Dark Reading report active intrusions by Akira and BlackCat (ALPHV) splinter affiliates targeting Manufacturing, Automotive, and Retail supply chains across Europe, North America, and LATAM. Attackers exploit legacy SSL VPN portals without FIDO2 phishing-resistant MFA, deploy Chisel/Cloudflared reverse tunnels, extract Active Directory kerberoastable service tickets, and execute high-speed multi-threaded encryption across both Windows file servers and Linux ERP hosts.",
+      "published": "2026-10-30T17:33:57.412Z",
+      "report_types": [
+        "threat-report",
+        "attack-pattern",
+        "indicator"
+      ],
+      "object_refs": [
+        "threat-actor--b6d2dcfed41b-0001-4000-8000-000000000001",
+        "malware--b6d2dcfed41b-0002-4000-8000-000000000002",
+        "indicator--b6d2dcfed41b-1000-4000-8000-066a80ee09ff",
+        "indicator--b6d2dcfed41b-1001-4000-8000-6b9f1c887885",
+        "indicator--b6d2dcfed41b-1002-4000-8000-8935edc2cf6e",
+        "indicator--b6d2dcfed41b-2000-4000-8000-19a64bc87ef2",
+        "indicator--b6d2dcfed41b-2001-4000-8000-9407cbc6e360",
+        "indicator--b6d2dcfed41b-2002-4000-8000-903f5650b588",
+        "attack-pattern--b6d2dcfed41b-3000-4000-8000-577f855450e0",
+        "attack-pattern--b6d2dcfed41b-3001-4000-8000-d9f08e0a9dd7",
+        "attack-pattern--b6d2dcfed41b-3002-4000-8000-805b94d86f7f",
+        "attack-pattern--b6d2dcfed41b-3003-4000-8000-da897e40264c",
+        "attack-pattern--b6d2dcfed41b-3004-4000-8000-ccc4f3ca3a66"
+      ],
+      "extensions": {
+        "x-google-secops-hunting": {
+          "udm_ioc_query": "// Google SecOps UDM Multi-Surface IoC Sweep: Akira & BlackCat Linux/Windows Ransomware Campaign Targeting Manufacturing & Retail OT Gateways\nmetadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\", \"PROCESS_LAUNCH\", \"FILE_CREATION\")\n(\n  target.ip in (\"185.172.128.95\") or\n  principal.ip in (\"185.172.128.95\") or\n  network.dns.questions.name in (\"akira-leak-negotiation-portal.onion.ly\") or\n  target.hostname in (\"akira-leak-negotiation-portal.onion.ly\") or\n  target.file.sha256 in (\"6c44a109e821b7304d9120f8a4c551290e8412a309bc7712e4509a12d84f9011\") or\n  principal.process.file.sha256 in (\"6c44a109e821b7304d9120f8a4c551290e8412a309bc7712e4509a12d84f9011\") or\n  target.file.md5 in (\"3e9012a44b812c709d1124f89a0123e5\") or\n  target.url in (\"https://akira-leak-negotiation-portal.onion.ly/chat/id-99412\")\n)",
+          "udm_behavioral_query": "// Google SecOps UDM Behavioral Hunt: Akira\nmetadata.event_type in (\"PROCESS_LAUNCH\", \"REGISTRY_MODIFICATION\", \"FILE_CREATION\", \"SCHEDULED_TASK_CREATION\")\n(\n  principal.process.file.full_path = /.*(akira_readme\\.txt).*/ nocase or\n  target.process.file.full_path = /.*(akira_readme\\.txt).*/ nocase or\n  target.process.command_line = /.*-Command.*/ nocase\n)\nprincipal.user.userid != \"SYSTEM\"",
+          "yaral_2_rule": "rule akira_blackcat_linux_windows_ransomware_camp_ti2026 {\n  meta:\n    author = \"Google SecOps Detection Engineering\"\n    description = \"Detects execution artifacts and C2 communication associated with Akira & BlackCat Linux/Windows Ransomware Campaign Targeting Manufacturing & Retail OT Gateways\"\n    severity = \"HIGH\"\n    priority = \"MEDIUM\"\n    mitre_attack = \"T1133, T1572, T1649, T1562.009, T1486\"\n    cve_references = \"CVE-2024-20353, CVE-2025-11904\"\n    threat_actor = \"Akira Syndicate\"\n    malware_family = \"Akira\"\n\n  events:\n    $proc.metadata.event_type in (\"PROCESS_LAUNCH\", \"FILE_CREATION\", \"REGISTRY_MODIFICATION\")\n    $proc.principal.hostname = $hostname\n    (\n      $proc.target.file.sha256 in (\"6c44a109e821b7304d9120f8a4c551290e8412a309bc7712e4509a12d84f9011\") nocase or\n      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase\n    )\n\n    $net.metadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\")\n    $net.principal.hostname = $hostname\n    (\n      $net.target.ip in (\"185.172.128.95\") or\n      $net.network.dns.questions.name in (\"akira-leak-negotiation-portal.onion.ly\") nocase\n    )\n\n  match:\n    $hostname over 15m\n\n  outcome:\n    $risk_score = max(80)\n    $mitre_techniques = array_distinct(\"T1133, T1572, T1649, T1562.009, T1486\")\n    $affected_host = array_distinct($hostname)\n    $principal_user = array_distinct($proc.principal.user.userid)\n    $command_lines = array_distinct($proc.target.process.command_line)\n    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))\n\n  condition:\n    $proc and $net\n}",
+          "severity": "High",
+          "cve_ids": [
+            "CVE-2024-20353",
+            "CVE-2025-11904"
+          ],
+          "target_industries": [
+            "Manufacturing",
+            "Retail",
+            "Critical Infrastructure/Energy"
+          ],
+          "target_regions": [
+            "Europe",
+            "North America",
+            "LATAM"
+          ]
+        }
+      }
+    },
+    {
+      "type": "threat-actor",
+      "spec_version": "2.1",
+      "id": "threat-actor--527c9ecc94a5-0001-4000-8000-000000000001",
+      "created": "2025-11-18T14:20:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Sandworm / APT44",
+      "description": "Threat actor associated with AcidPour & Industroyer-Variant OT Wiper Campaign Against Energy & Telecom Substations",
+      "threat_actor_types": [
+        "apt groups"
+      ]
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--527c9ecc94a5-0002-4000-8000-000000000002",
+      "created": "2025-11-18T14:20:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "AcidPour Wiper",
+      "malware_types": [
+        "wipers"
+      ],
+      "is_family": true
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--527c9ecc94a5-1000-4000-8000-107030ce00e7",
+      "created": "2025-11-18T14:20:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "SHA-256 File Hash: ummc_armel.elf",
+      "pattern": "[file:hashes.'SHA-256' = '2f9018c44a12b7830e9124d6c8012a45f9123b88c4012e77a9012b34d812f09a']",
+      "pattern_type": "stix",
+      "valid_from": "2025-11-18T14:20:00.000Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--527c9ecc94a5-1001-4000-8000-32fbf474153b",
+      "created": "2025-11-18T14:20:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "SHA-1 File Hash: nft_priv_esc.elf",
+      "pattern": "[file:hashes.'SHA-1' = '5d1209a84c11b7823e0914f6a8821c09e4123b11']",
+      "pattern_type": "stix",
+      "valid_from": "2025-11-18T14:20:00.000Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--527c9ecc94a5-1002-4000-8000-e59e16b66faf",
+      "created": "2025-11-18T14:20:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "MD5 File Hash: acidpour_x64.elf",
+      "pattern": "[file:hashes.'MD5' = '9c112e4481bc72910d4451ef9012ab77']",
+      "pattern_type": "stix",
+      "valid_from": "2025-11-18T14:20:00.000Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--527c9ecc94a5-2000-4000-8000-756ce81cf56b",
+      "created": "2025-11-18T14:20:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "IPv4: 185.244.212.61",
+      "description": "Sandworm Operational Staging Relay",
+      "pattern": "[ipv4-addr:value = '185.244.212.61']",
+      "pattern_type": "stix",
+      "valid_from": "2025-11-18T14:20:00.000Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--527c9ecc94a5-2001-4000-8000-cef11ca6f0d7",
+      "created": "2025-11-18T14:20:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Domain: update-mikrotik-routeros-mirror.net",
+      "description": "Spoofed Firmware Distribution Host",
+      "pattern": "[domain-name:value = 'update-mikrotik-routeros-mirror.net']",
+      "pattern_type": "stix",
+      "valid_from": "2025-11-18T14:20:00.000Z"
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--527c9ecc94a5-3000-4000-8000-e688f6669217",
+      "created": "2025-11-18T14:20:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1068 - Exploitation for Privilege Escalation",
+      "description": "Exploits Linux kernel nf_tables vulnerability CVE-2025-0918.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1068",
+          "url": "https://attack.mitre.org/techniques/T1068/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--527c9ecc94a5-3001-4000-8000-261aa4ba3222",
+      "created": "2025-11-18T14:20:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1070.002 - Indicator Removal: Clear Linux or Mac System Logs",
+      "description": "Terminates rsyslog and removes /var/log/auth.log.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1070.002",
+          "url": "https://attack.mitre.org/techniques/T1070/002/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--527c9ecc94a5-3002-4000-8000-6448f9427812",
+      "created": "2025-11-18T14:20:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1561.002 - Disk Wipe: Disk Structure Wipe",
+      "description": "Wipes raw MTD flash memory and eMMC/SD block storage.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1561.002",
+          "url": "https://attack.mitre.org/techniques/T1561/002/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--527c9ecc94a5-3003-4000-8000-7c1fa21c006e",
+      "created": "2025-11-18T14:20:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1495 - Firmware Corruption",
+      "description": "Erases bootloader partitions on industrial routers and RTUs.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1495",
+          "url": "https://attack.mitre.org/techniques/T1495/"
+        }
+      ]
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--527c9ecc94a5-9999-4000-8000-000000009999",
+      "created": "2025-11-18T14:20:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "AcidPour & Industroyer-Variant OT Wiper Campaign Against Energy & Telecom Substations",
+      "description": "Analysis by Mandiant and CISA details a destructive wiper operation utilizing AcidPour—an evolved variant of AcidRain—paired with ICS protocol disruption modules targeting Critical Infrastructure/Energy and Telecom operators in Europe and Middle East. The binary recursively enumerates `/dev/mtd*`, `/dev/mmcblk*`, and `/dev/sd*` flash and block devices on embedded Linux routers and substation RTUs, issuing `MEMERASE` and `BLKSECDISP` ioctl syscalls before forcing an irreversible hardware reboot.",
+      "published": "2025-11-18T14:20:00.000Z",
+      "report_types": [
+        "threat-report",
+        "attack-pattern",
+        "indicator"
+      ],
+      "object_refs": [
+        "threat-actor--527c9ecc94a5-0001-4000-8000-000000000001",
+        "malware--527c9ecc94a5-0002-4000-8000-000000000002",
+        "indicator--527c9ecc94a5-1000-4000-8000-107030ce00e7",
+        "indicator--527c9ecc94a5-1001-4000-8000-32fbf474153b",
+        "indicator--527c9ecc94a5-1002-4000-8000-e59e16b66faf",
+        "indicator--527c9ecc94a5-2000-4000-8000-756ce81cf56b",
+        "indicator--527c9ecc94a5-2001-4000-8000-cef11ca6f0d7",
+        "attack-pattern--527c9ecc94a5-3000-4000-8000-e688f6669217",
+        "attack-pattern--527c9ecc94a5-3001-4000-8000-261aa4ba3222",
+        "attack-pattern--527c9ecc94a5-3002-4000-8000-6448f9427812",
+        "attack-pattern--527c9ecc94a5-3003-4000-8000-7c1fa21c006e"
+      ],
+      "extensions": {
+        "x-google-secops-hunting": {
+          "udm_ioc_query": "// Google SecOps UDM Multi-Surface IoC Sweep: AcidPour & Industroyer-Variant OT Wiper Campaign Against Energy & Telecom Substations\nmetadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\", \"PROCESS_LAUNCH\", \"FILE_CREATION\")\n(\n  target.ip in (\"185.244.212.61\") or\n  principal.ip in (\"185.244.212.61\") or\n  network.dns.questions.name in (\"update-mikrotik-routeros-mirror.net\") or\n  target.hostname in (\"update-mikrotik-routeros-mirror.net\") or\n  target.file.sha256 in (\"2f9018c44a12b7830e9124d6c8012a45f9123b88c4012e77a9012b34d812f09a\") or\n  principal.process.file.sha256 in (\"2f9018c44a12b7830e9124d6c8012a45f9123b88c4012e77a9012b34d812f09a\") or\n  target.file.md5 in (\"9c112e4481bc72910d4451ef9012ab77\")\n)",
+          "udm_behavioral_query": "// Google SecOps UDM Behavioral Hunt: AcidPour Wiper\nmetadata.event_type in (\"PROCESS_LAUNCH\", \"REGISTRY_MODIFICATION\", \"FILE_CREATION\", \"SCHEDULED_TASK_CREATION\")\n(\n  principal.process.file.full_path = /.*(ummc).*/ nocase or\n  target.process.file.full_path = /.*(ummc).*/ nocase or\n  target.process.command_line = /.*chmod.*/ nocase\n)\nprincipal.user.userid != \"SYSTEM\"",
+          "yaral_2_rule": "rule acidpour_industroyer_variant_ot_wiper_campai_ti2025 {\n  meta:\n    author = \"Google SecOps Detection Engineering\"\n    description = \"Detects execution artifacts and C2 communication associated with AcidPour & Industroyer-Variant OT Wiper Campaign Against Energy & Telecom Substations\"\n    severity = \"CRITICAL\"\n    priority = \"HIGH\"\n    mitre_attack = \"T1068, T1070.002, T1561.002, T1495\"\n    cve_references = \"CVE-2025-0918\"\n    threat_actor = \"Sandworm / APT44\"\n    malware_family = \"AcidPour Wiper\"\n\n  events:\n    $proc.metadata.event_type in (\"PROCESS_LAUNCH\", \"FILE_CREATION\", \"REGISTRY_MODIFICATION\")\n    $proc.principal.hostname = $hostname\n    (\n      $proc.target.file.sha256 in (\"2f9018c44a12b7830e9124d6c8012a45f9123b88c4012e77a9012b34d812f09a\") nocase or\n      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase\n    )\n\n    $net.metadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\")\n    $net.principal.hostname = $hostname\n    (\n      $net.target.ip in (\"185.244.212.61\") or\n      $net.network.dns.questions.name in (\"update-mikrotik-routeros-mirror.net\") nocase\n    )\n\n  match:\n    $hostname over 15m\n\n  outcome:\n    $risk_score = max(95)\n    $mitre_techniques = array_distinct(\"T1068, T1070.002, T1561.002, T1495\")\n    $affected_host = array_distinct($hostname)\n    $principal_user = array_distinct($proc.principal.user.userid)\n    $command_lines = array_distinct($proc.target.process.command_line)\n    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))\n\n  condition:\n    $proc and $net\n}",
+          "severity": "Critical",
+          "cve_ids": [
+            "CVE-2025-0918"
+          ],
+          "target_industries": [
+            "Critical Infrastructure/Energy",
+            "Telecom",
+            "Government"
+          ],
+          "target_regions": [
+            "Europe",
+            "Middle East"
+          ]
+        }
+      }
+    },
+    {
+      "type": "threat-actor",
+      "spec_version": "2.1",
+      "id": "threat-actor--32e6dbf214ae-0001-4000-8000-000000000001",
+      "created": "2024-09-22T09:15:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "TA577 / AsyncRAT Operators",
+      "description": "Threat actor associated with AsyncRAT & Vidar Loader Campaign Abusing Signed Cloud Tunnel Binaries in Healthcare & Retail",
+      "threat_actor_types": [
+        "phishing/bec"
+      ]
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--32e6dbf214ae-0002-4000-8000-000000000002",
+      "created": "2024-09-22T09:15:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "AsyncRAT",
+      "malware_types": [
+        "rats"
+      ],
+      "is_family": true
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--32e6dbf214ae-1000-4000-8000-76d865d22a6f",
+      "created": "2024-09-22T09:15:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "SHA-256 File Hash: AsyncClient_stub.exe",
+      "pattern": "[file:hashes.'SHA-256' = '4a8812c90e3412b780d912f45c612a90e8412b309c7712e4509a12d84f9011cc']",
+      "pattern_type": "stix",
+      "valid_from": "2024-09-22T09:15:00.000Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--32e6dbf214ae-1001-4000-8000-0a7aa4de3434",
+      "created": "2024-09-22T09:15:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "MD5 File Hash: verify_invoice.js",
+      "pattern": "[file:hashes.'MD5' = '6b1209f44a712c90e3412b88a0912d19']",
+      "pattern_type": "stix",
+      "valid_from": "2024-09-22T09:15:00.000Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--32e6dbf214ae-2000-4000-8000-1f662216021f",
+      "created": "2024-09-22T09:15:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "IPv4: 94.156.71.108",
+      "description": "AsyncRAT C2 Listener",
+      "pattern": "[ipv4-addr:value = '94.156.71.108']",
+      "pattern_type": "stix",
+      "valid_from": "2024-09-22T09:15:00.000Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--32e6dbf214ae-2001-4000-8000-99c4f7202c9d",
+      "created": "2024-09-22T09:15:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "Domain: async-rat-node04.ddns.net",
+      "description": "Dynamic DNS C2 Hostname",
+      "pattern": "[domain-name:value = 'async-rat-node04.ddns.net']",
+      "pattern_type": "stix",
+      "valid_from": "2024-09-22T09:15:00.000Z"
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--32e6dbf214ae-3000-4000-8000-8342256ec87f",
+      "created": "2024-09-22T09:15:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1027.006 - Obfuscated Files or Information: HTML Smuggling",
+      "description": "Uses SVG/HTML Blob smuggling to bypass email gateway inspection.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1027.006",
+          "url": "https://attack.mitre.org/techniques/T1027/006/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--32e6dbf214ae-3001-4000-8000-94cad9628dbd",
+      "created": "2024-09-22T09:15:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1059.007 - Command and Scripting Interpreter: JavaScript",
+      "description": "Executes JScript stage-1 downloader via wscript.exe.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1059.007",
+          "url": "https://attack.mitre.org/techniques/T1059/007/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--32e6dbf214ae-3002-4000-8000-47efa40a1f64",
+      "created": "2024-09-22T09:15:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "T1548.002 - Abuse Elevation Control Mechanism: Bypass User Account Control",
+      "description": "Abuses fodhelper.exe auto-elevation behavior.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1548.002",
+          "url": "https://attack.mitre.org/techniques/T1548/002/"
+        }
+      ]
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--32e6dbf214ae-9999-4000-8000-000000009999",
+      "created": "2024-09-22T09:15:00.000Z",
+      "modified": "2026-11-05T17:50:20.133Z",
+      "name": "AsyncRAT & Vidar Loader Campaign Abusing Signed Cloud Tunnel Binaries in Healthcare & Retail",
+      "description": "KrebsOnSecurity and Unit 42 documented a persistent multi-stage campaign utilizing HTML/SVG smuggling in tax and medical billing lures targeting Healthcare and Retail organizations in North America, LATAM, and APAC. Opening the embedded SVG reconstructs an ISO archive on disk containing a signed binary that side-loads Vidar Stealer and AsyncRAT, providing operators with keystroke logging, remote desktop control, and financial credential theft.",
+      "published": "2024-09-22T09:15:00.000Z",
+      "report_types": [
+        "threat-report",
+        "attack-pattern",
+        "indicator"
+      ],
+      "object_refs": [
+        "threat-actor--32e6dbf214ae-0001-4000-8000-000000000001",
+        "malware--32e6dbf214ae-0002-4000-8000-000000000002",
+        "indicator--32e6dbf214ae-1000-4000-8000-76d865d22a6f",
+        "indicator--32e6dbf214ae-1001-4000-8000-0a7aa4de3434",
+        "indicator--32e6dbf214ae-2000-4000-8000-1f662216021f",
+        "indicator--32e6dbf214ae-2001-4000-8000-99c4f7202c9d",
+        "attack-pattern--32e6dbf214ae-3000-4000-8000-8342256ec87f",
+        "attack-pattern--32e6dbf214ae-3001-4000-8000-94cad9628dbd",
+        "attack-pattern--32e6dbf214ae-3002-4000-8000-47efa40a1f64"
+      ],
+      "extensions": {
+        "x-google-secops-hunting": {
+          "udm_ioc_query": "// Google SecOps UDM Multi-Surface IoC Sweep: AsyncRAT & Vidar Loader Campaign Abusing Signed Cloud Tunnel Binaries in Healthcare & Retail\nmetadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\", \"PROCESS_LAUNCH\", \"FILE_CREATION\")\n(\n  target.ip in (\"94.156.71.108\") or\n  principal.ip in (\"94.156.71.108\") or\n  network.dns.questions.name in (\"async-rat-node04.ddns.net\") or\n  target.hostname in (\"async-rat-node04.ddns.net\") or\n  target.file.sha256 in (\"4a8812c90e3412b780d912f45c612a90e8412b309c7712e4509a12d84f9011cc\") or\n  principal.process.file.sha256 in (\"4a8812c90e3412b780d912f45c612a90e8412b309c7712e4509a12d84f9011cc\") or\n  target.file.md5 in (\"6b1209f44a712c90e3412b88a0912d19\")\n)",
+          "udm_behavioral_query": "// Google SecOps UDM Behavioral Hunt: AsyncRAT\nmetadata.event_type in (\"PROCESS_LAUNCH\", \"REGISTRY_MODIFICATION\", \"FILE_CREATION\", \"SCHEDULED_TASK_CREATION\")\n(\n  target.process.command_line = /.*wscript\\.exe.*/ nocase or\n  target.registry.registry_key = /.*command.*/ nocase\n)\nprincipal.user.userid != \"SYSTEM\"",
+          "yaral_2_rule": "rule asyncrat_vidar_loader_campaign_abusing_signe_ti2024 {\n  meta:\n    author = \"Google SecOps Detection Engineering\"\n    description = \"Detects execution artifacts and C2 communication associated with AsyncRAT & Vidar Loader Campaign Abusing Signed Cloud Tunnel Binaries in Healthcare & Retail\"\n    severity = \"MEDIUM\"\n    priority = \"MEDIUM\"\n    mitre_attack = \"T1027.006, T1059.007, T1548.002\"\n    cve_references = \"CVE-2024-38021\"\n    threat_actor = \"TA577 / AsyncRAT Operators\"\n    malware_family = \"AsyncRAT\"\n\n  events:\n    $proc.metadata.event_type in (\"PROCESS_LAUNCH\", \"FILE_CREATION\", \"REGISTRY_MODIFICATION\")\n    $proc.principal.hostname = $hostname\n    (\n      $proc.target.file.sha256 in (\"4a8812c90e3412b780d912f45c612a90e8412b309c7712e4509a12d84f9011cc\") nocase or\n      $proc.target.process.command_line = /.*(powershell|rundll32|wmic|vssadmin|schtasks|curl|certutil).*/ nocase\n    )\n\n    $net.metadata.event_type in (\"NETWORK_CONNECTION\", \"NETWORK_DNS\", \"NETWORK_HTTP\")\n    $net.principal.hostname = $hostname\n    (\n      $net.target.ip in (\"94.156.71.108\") or\n      $net.network.dns.questions.name in (\"async-rat-node04.ddns.net\") nocase\n    )\n\n  match:\n    $hostname over 15m\n\n  outcome:\n    $risk_score = max(60)\n    $mitre_techniques = array_distinct(\"T1027.006, T1059.007, T1548.002\")\n    $affected_host = array_distinct($hostname)\n    $principal_user = array_distinct($proc.principal.user.userid)\n    $command_lines = array_distinct($proc.target.process.command_line)\n    $contacted_c2 = array_distinct(coalesce($net.network.dns.questions.name, $net.target.ip))\n\n  condition:\n    $proc and $net\n}",
+          "severity": "Medium",
+          "cve_ids": [
+            "CVE-2024-38021"
+          ],
+          "target_industries": [
+            "Healthcare",
+            "Retail",
+            "Finance/BFSI"
+          ],
+          "target_regions": [
+            "North America",
+            "LATAM",
+            "APAC"
+          ]
+        }
+      }
+    }
+  ]
+}
